@@ -1,4 +1,4 @@
-import search_icon from "../../assets/images/icons/search_icon.png";
+import search_icon from "../../assets/images/icons/search.png";
 
 import "./styles.css";
 
