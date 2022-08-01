@@ -3,7 +3,15 @@ import "./styles.css";
 const Footer = () => (
   <footer>
     <span>
-      made by <b>@jeffreyalvr</b>
+      made by{" "}
+      <a
+        href="https://github.com/matheusunitt"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Click to open my GitHub"
+      >
+        @jeffreyalvr
+      </a>
     </span>
     <p className="disclaimer">
       GitHub is not affiliated with this website in any way.

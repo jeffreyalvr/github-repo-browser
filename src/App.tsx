@@ -1,6 +1,7 @@
-import Home from "./pages/Home";
+import AppRoutes from "./routes";
+
 import "./App.css";
 
-const App = () => <Home />;
+const App = () => <AppRoutes />;
 
 export default App;
