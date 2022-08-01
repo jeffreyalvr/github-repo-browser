@@ -1,9 +1,65 @@
+@font-face {
+  font-family: Inter-Light;
+  src: url("./assets/fonts/Inter-Light.ttf");
+}
+
+@font-face {
+  font-family: Inter-Regular;
+  font-weight: 400;
+  src: url("./assets/fonts/Inter-Regular.ttf");
+}
+
+@font-face {
+  font-family: Inter-SemiBold;
+  font-weight: 400;
+  src: url("./assets/fonts/Inter-SemiBold.ttf");
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Inter-Light";
 }
 
 body {
-  background-color: #e2e2e2;
+  background-color: #f3f3f3;
+}
+
+a:link,
+a:hover,
+a:visited,
+a:active {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #30b0cc;
+  outline: 0;
+}
+
+main h1 {
+  margin-bottom: 50px;
+}
+
+button {
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 0.01%, #e5e5e5 100%);
+  border: 1px solid rgba(94, 94, 94, 0.19);
+  font-family: "Inter-Regular";
+  border-radius: 20px;
+  padding: 0 25px;
+  height: 40px;
+  cursor: pointer;
+}
+
+button.btn-primary {
+  background: linear-gradient(180deg, #00e0ff 0%, #00e0ff 0.01%, #00d1ee 100%);
+}
+
+button.btn-primary img {
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin-right: 5px;
+  height: 24px;
+  width: 24px;
+  border: 0px;
+  outline: 0;
 }

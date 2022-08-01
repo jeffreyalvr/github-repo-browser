@@ -1,0 +1,54 @@
+header {
+  background: linear-gradient(180deg, #38b8ca 0%, rgba(56, 184, 202, 0) 100%);
+  display: flex;
+  width: 100%;
+}
+
+.small {
+  height: 280px;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 60px;
+}
+
+.small .github-logo {
+  height: 140px;
+  width: 140px;
+  flex-grow: 0;
+}
+
+.big {
+  height: 380px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.big .github-logo {
+  height: 180px;
+  width: 180px;
+}
+
+.github-logo img {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 0;
+  outline: 0;
+}
+
+.title {
+  height: auto;
+  width: auto;
+  font-size: 25px;
+}
+
+.small .title {
+  margin-left: 30px;
+  flex-grow: 1;
+}
+
+.big .title {
+  margin-top: 30px;
+}

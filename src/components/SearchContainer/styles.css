@@ -1,0 +1,57 @@
+.search-container {
+  height: auto;
+  width: 750px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textbox-area {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.textbox-area button {
+  flex-grow: 0;
+}
+
+.textbox-area .textbox {
+  background-color: #fff;
+  border: 1px solid rgba(94, 94, 94, 0.19);
+  border-radius: 20px;
+  height: 40px;
+  margin: 5px 20px 5px 0;
+  flex-grow: 3;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.textbox-area .textbox b {
+  font-family: "Inter-SemiBold";
+  font-size: 20px;
+  color: #30b0cc;
+  padding: 0 5px 0 20px;
+  height: 100%;
+  line-height: 1.7em;
+}
+
+.textbox-area .textbox input[type="text"] {
+  color: rgb(161, 161, 161);
+  font-size: 15px;
+  border: 0;
+  height: 100%;
+  width: 100%;
+  padding: 0 25px 0 0;
+  letter-spacing: 0.1pt;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: 0.3s ease-in;
+  outline: 0;
+}
+
+input[type="text"]:focus {
+  border: 1px solid #bbbbbb;
+}
