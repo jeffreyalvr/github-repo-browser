@@ -9,7 +9,7 @@ import "./styles.css";
 const Home = () => {
   return (
     <Wrapper>
-      <Header size="big"></Header>
+      <Header size="big" />
       <Main>
         <SearchContainer />
       </Main>

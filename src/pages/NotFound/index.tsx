@@ -9,7 +9,7 @@ import "./styles.css";
 const NotFound = () => {
   return (
     <Wrapper>
-      <Header size="small"></Header>
+      <Header size="small" />
       <Main>
         <NotFoundContainer />
       </Main>

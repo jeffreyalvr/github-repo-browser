@@ -40,6 +40,11 @@ main h1 {
   margin-bottom: 50px;
 }
 
+main h1 b {
+  font-size: 25px;
+  color: #30b0cc;
+}
+
 button {
   background: linear-gradient(180deg, #ffffff 0%, #ffffff 0.01%, #e5e5e5 100%);
   border: 1px solid rgba(94, 94, 94, 0.19);
@@ -50,11 +55,11 @@ button {
   cursor: pointer;
 }
 
-button.btn-primary {
-  background: linear-gradient(180deg, #00e0ff 0%, #00e0ff 0.01%, #00d1ee 100%);
+button:hover {
+  filter: brightness(98%);
 }
 
-button.btn-primary img {
+button img {
   background-repeat: no-repeat;
   vertical-align: middle;
   margin-right: 5px;
@@ -62,4 +67,27 @@ button.btn-primary img {
   width: 24px;
   border: 0px;
   outline: 0;
+}
+
+button.btn-primary {
+  background: linear-gradient(180deg, #00e0ff 0%, #00e0ff 0.01%, #00d1ee 100%);
+}
+
+button.btn-secondary {
+  background: linear-gradient(180deg, #ccff00 0%, #ccff00 0.01%, #b6dd18 100%);
+}
+
+button.btn-arrow {
+  padding: 0;
+  margin-left: 10px;
+  vertical-align: middle;
+  border-radius: 100px;
+  height: 30px;
+  width: 30px;
+}
+
+button.btn-arrow img {
+  margin-right: 0;
+  height: 18px;
+  width: 18px;
 }

@@ -16,11 +16,6 @@ span b {
   color: #30b0cc;
 }
 
-span b:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
 p.disclaimer {
   color: #bbbbbb;
   font-size: 15px;
