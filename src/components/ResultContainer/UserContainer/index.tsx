@@ -1,11 +1,16 @@
 import external_link_icon from "../../../assets/images/icons/external_link.png";
 import switch_icon from "../../../assets/images/icons/switch.png";
 
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "../styles.css";
 
-const UserContainer = () => {
+interface URLProps {
+  name: string;
+  profile_pic: string;
+}
+
+const UserContainer = (props: URLProps) => {
   let navigate = useNavigate();
 
   const routeChange = () => {
@@ -16,15 +21,12 @@ const UserContainer = () => {
   return (
     <div className="user-container">
       <div className="profile-pic">
-        <img
-          src="https://media-exp1.licdn.com/dms/image/C4E03AQHImwgrtQYQZQ/profile-displayphoto-shrink_800_800/0/1585886879084?e=1665014400&v=beta&t=eLFMGPucO8dpjuDH83LUfiRIxsSSoD_LbYALI2bgUe4"
-          alt="jeffreyalvr's avatar"
-        />
+        <img src={`${props.profile_pic}`} alt={`${props.name}'s avatar`} />
       </div>
-      <p>@jeffreyalvr</p>
+      <p>@{props.name}</p>
 
       <a
-        href="https://github.com/matheusunitt"
+        href={`https://github.com/${props.name}`}
         target="_blank"
         rel="noopener noreferrer"
       >
