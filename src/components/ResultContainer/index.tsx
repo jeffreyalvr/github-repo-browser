@@ -45,7 +45,14 @@ const ResultContainer = () => {
       .catch((err) => {
         setUsernameExists(false);
         setError(err);
+        userNotFound();
       });
+  };
+
+  const userNotFound = () => {
+    setLoading(false);
+    let path = "/404";
+    navigate(path);
   };
 
   const loadRepos = async () => {
