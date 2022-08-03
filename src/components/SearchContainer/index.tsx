@@ -9,7 +9,7 @@ const SearchContainer = () => {
   const [username, setUsername] = useState("");
 
   const handleTextInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
+    setUsername(e.target.value.toLowerCase());
   };
 
   let navigate = useNavigate();

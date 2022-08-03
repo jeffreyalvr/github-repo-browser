@@ -5,7 +5,7 @@ const Footer = () => (
     <span>
       made by{" "}
       <a
-        href="https://github.com/matheusunitt"
+        href="https://github.com/jeffreyalvr"
         target="_blank"
         rel="noopener noreferrer"
         title="Click to open my GitHub"

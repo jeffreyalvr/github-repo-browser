@@ -2,9 +2,9 @@ import github_logo from "../../assets/images/github-logo.png";
 
 import "./styles.css";
 
-interface Props {
+type Props = {
   size: string;
-}
+};
 
 const Header = (props: Props) => (
   <header className={`${props.size}`}>

@@ -6,6 +6,7 @@ import "./styles.css";
 
 const NotFoundContainer = () => {
   let navigate = useNavigate();
+
   const routeChange = () => {
     let path = "/";
     navigate(path);
