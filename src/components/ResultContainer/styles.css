@@ -1,3 +1,18 @@
+h1.label-loading {
+  height: auto;
+  margin: 0;
+}
+
+h1.label-loading img {
+  vertical-align: middle;
+  background-size: fit;
+  background-repeat: no-repeat;
+  border: 0;
+  outline: 0;
+  height: 50px;
+  width: 50px;
+}
+
 .result-wrapper {
   height: auto;
   width: 100%;

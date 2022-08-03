@@ -10,6 +10,8 @@ import language_icon from "../../assets/images/icons/language.png";
 import forks_icon from "../../assets/images/icons/forks.png";
 import switch_icon from "../../assets/images/icons/switch.png";
 
+import loading_icon from "../../assets/images/icons/loading.gif";
+
 import "./styles.css";
 
 const ResultContainer = () => {
@@ -17,6 +19,7 @@ const ResultContainer = () => {
   const [avatarUrl, setAvatarUrl] = useState("");
   const [error, setError] = useState({});
   const [usernameExists, setUsernameExists] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   let { name } = useParams();
   let navigate = useNavigate();
@@ -72,21 +75,28 @@ const ResultContainer = () => {
               html_url,
               description,
               forks_count,
-              showRepoDetails: false,
+              showRepoDetails: true,
             };
           }
         );
 
+        setLoading(false);
         setRepositories(data);
       })
       .catch((err) => setError(err));
   };
 
   useEffect(() => {
+    setLoading(true);
     checkUsername();
   }, []);
 
-  return (
+  return loading ? (
+    <h1 className="label-loading">
+      <img src={loading_icon} />
+      Loading...
+    </h1>
+  ) : (
     <div className="result-wrapper">
       <div className="repos-container">
         <div className="repos-header">
