@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, useRoutes } from "react-router-dom";
+import { HashRouter, Route, useRoutes } from "react-router-dom";
 
 import Home from "../pages/Home";
 import RepoViewer from "../pages/RepoViewer";
@@ -14,9 +14,9 @@ const RoutePaths = () =>
   ]);
 
 const AppRoutes = () => (
-  <BrowserRouter>
+  <HashRouter>
     <RoutePaths />
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default AppRoutes;
