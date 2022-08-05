@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/github-repo-browser/static/css/main.284fa991.css",
-    "main.js": "/github-repo-browser/static/js/main.504452f9.js",
+    "main.js": "/github-repo-browser/static/js/main.dbc16ea7.js",
     "static/media/Inter-SemiBold.ttf": "/github-repo-browser/static/media/Inter-SemiBold.4d56bb21f2399db8ad48.ttf",
     "static/media/Inter-Light.ttf": "/github-repo-browser/static/media/Inter-Light.eec8664621fec98efb37.ttf",
     "static/media/Inter-Regular.ttf": "/github-repo-browser/static/media/Inter-Regular.e89cb19905e7db5591b0.ttf",
     "static/media/loading.gif": "/github-repo-browser/static/media/loading.aea185ab1f3009f3f8f7.gif",
     "index.html": "/github-repo-browser/index.html",
     "main.284fa991.css.map": "/github-repo-browser/static/css/main.284fa991.css.map",
-    "main.504452f9.js.map": "/github-repo-browser/static/js/main.504452f9.js.map"
+    "main.dbc16ea7.js.map": "/github-repo-browser/static/js/main.dbc16ea7.js.map"
   },
   "entrypoints": [
     "static/css/main.284fa991.css",
-    "static/js/main.504452f9.js"
+    "static/js/main.dbc16ea7.js"
   ]
 }
