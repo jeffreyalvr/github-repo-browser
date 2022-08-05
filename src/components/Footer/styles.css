@@ -8,7 +8,7 @@ footer {
 
 span {
   margin-bottom: 15px;
-  font-size: 18px;
+  font-size: 1.2rem;
   font-family: "Inter-Regular";
 }
 
@@ -18,5 +18,12 @@ span b {
 
 p.disclaimer {
   color: #bbbbbb;
+  text-align: center;
   font-size: 15px;
+}
+
+@media screen and (max-width: 500px) {
+  footer {
+    padding: 40px 20px !important;
+  }
 }

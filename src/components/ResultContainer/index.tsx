@@ -107,8 +107,10 @@ const ResultContainer = () => {
     <div className="result-wrapper">
       <div className="repos-container">
         <div className="repos-header">
-          <h1>
-            Repositories <b>({repositories.length})</b>
+          <div className="inline-block">
+            <h1>
+              Repositories <b>({repositories.length})</b>
+            </h1>
             <button
               className="ml14"
               title="Click to refresh the user's repositories"
@@ -117,9 +119,9 @@ const ResultContainer = () => {
               <img src={refresh_icon} />
               Refresh
             </button>
-          </h1>
+          </div>
 
-          <span>You are looking all the public repositories from {name}</span>
+          <span>You are looking all the public repositories from {name}.</span>
         </div>
 
         {repositories.map((repos) => (

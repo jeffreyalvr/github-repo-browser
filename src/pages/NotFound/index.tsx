@@ -4,8 +4,6 @@ import Main from "../../components/Main";
 import NotFoundContainer from "../../components/NotFoundContainer";
 import Footer from "../../components/Footer";
 
-import "./styles.css";
-
 const NotFound = () => {
   return (
     <Wrapper>

@@ -4,8 +4,6 @@ import Main from "../../components/Main";
 import ResultContainer from "../../components/ResultContainer";
 import Footer from "../../components/Footer";
 
-import "./styles.css";
-
 const RepoViewer = () => {
   return (
     <Wrapper>

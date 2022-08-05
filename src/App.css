@@ -41,8 +41,9 @@ main h1 {
 }
 
 main h1 b {
-  font-size: 25px;
+  font-size: 1.5rem;
   color: #30b0cc;
+  margin: 0 5px;
 }
 
 button {

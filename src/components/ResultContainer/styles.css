@@ -35,12 +35,19 @@ h1.label-loading img {
   margin-bottom: 50px;
 }
 
+.repos-container .repos-header .inline-block {
+  display: flex;
+  flex-direction: row;
+}
+
 .repos-container .repos-header h1 {
   margin-bottom: 15px !important;
 }
 
 .repos-container .repos-header span {
-  font-size: 15px;
+  width: 100%;
+  display: block;
+  font-size: 0.93rem;
   color: #9a9a9a;
 }
 
@@ -96,7 +103,7 @@ h1.label-loading img {
 
 .user-container {
   height: 100%;
-  width: auto;
+  width: 100%;
   max-width: 400px;
   flex-grow: 1;
   display: flex;
@@ -111,7 +118,7 @@ h1.label-loading img {
 .user-container p {
   color: #30b0cc;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.25rem;
   letter-spacing: 0.5pt;
   margin: 0 0 40px 0;
 }
@@ -131,4 +138,71 @@ h1.label-loading img {
   background-repeat: no-repeat;
   height: 100%;
   width: 100%;
+}
+
+@media screen and (max-width: 1380px) {
+  .repos-container .repo-item .details {
+    flex-direction: column;
+  }
+  .repos-container .repo-item .details .right-detail-panel button {
+    margin: 10px 0 0 0 !important;
+  }
+  .user-container {
+    max-width: 350px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .result-wrapper {
+    flex-direction: column-reverse !important;
+  }
+  .repos-container {
+    padding: 0 !important;
+    border: 0 !important;
+  }
+  .repos-container .repos-header .inline-block {
+    margin-bottom: 15px !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .repos-container .repos-header button {
+    margin-left: 0 !important;
+  }
+  .user-container {
+    padding: 0 0 30px 0 !important;
+    margin: 0 0 30px 0 !important;
+    border-bottom: 1px solid #ebebeb;
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .repos-container .repos-header h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .repos-container .repos-header h1 {
+    font-size: 1.6rem;
+  }
+  .repos-container .repo-item .title {
+    font-size: 1.5rem;
+  }
+  .repos-container .repo-item .details .left-detail-panel span {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .repos-container .repos-header h1 {
+    font-size: 1.4rem;
+  }
+  .repos-container .repo-item .title {
+    font-size: 1.2rem;
+  }
+  .repos-container .repo-item .details .left-detail-panel span {
+    font-size: 1rem;
+  }
 }

@@ -4,8 +4,6 @@ import SearchContainer from "../../components/SearchContainer";
 import Main from "../../components/Main";
 import Footer from "../../components/Footer";
 
-import "./styles.css";
-
 const Home = () => {
   return (
     <Wrapper>

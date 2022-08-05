@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: 0.3s ease-out;
 }
 
 .textbox-area {
@@ -31,7 +32,7 @@
 
 .textbox-area .textbox b {
   font-family: "Inter-SemiBold";
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #30b0cc;
   padding: 0 5px 0 20px;
   height: 100%;
@@ -40,7 +41,7 @@
 
 .textbox-area .textbox input[type="text"] {
   color: rgb(161, 161, 161);
-  font-size: 15px;
+  font-size: 0.93rem;
   border: 0;
   height: 100%;
   width: 100%;
@@ -54,4 +55,16 @@
 
 input[type="text"]:focus {
   border: 1px solid #bbbbbb;
+}
+
+@media screen and (max-width: 1000px) {
+  .search-container {
+    width: 100% !important;
+  }
+  .textbox-area {
+    flex-direction: column;
+  }
+  .textbox-area .textbox {
+    margin: 5px 0 20px 0 !important;
+  }
 }
