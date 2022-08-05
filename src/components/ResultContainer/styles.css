@@ -188,21 +188,9 @@ h1.label-loading img {
     font-size: 1.6rem;
   }
   .repos-container .repo-item .title {
-    font-size: 1.5rem;
-  }
-  .repos-container .repo-item .details .left-detail-panel span {
-    font-size: 1.2rem;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .repos-container .repos-header h1 {
-    font-size: 1.4rem;
-  }
-  .repos-container .repo-item .title {
     font-size: 1.2rem;
   }
   .repos-container .repo-item .details .left-detail-panel span {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 }

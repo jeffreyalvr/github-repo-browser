@@ -57,7 +57,19 @@ input[type="text"]:focus {
   border: 1px solid #bbbbbb;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 900px) {
+  .search-container {
+    width: 650px !important;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .search-container {
+    width: 550px !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
   .search-container {
     width: 100% !important;
   }
@@ -66,5 +78,6 @@ input[type="text"]:focus {
   }
   .textbox-area .textbox {
     margin: 5px 0 20px 0 !important;
+    width: 300px !important;
   }
 }

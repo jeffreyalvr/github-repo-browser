@@ -19,6 +19,7 @@ const ResultContainer = () => {
   const [avatarUrl, setAvatarUrl] = useState("");
   const [error, setError] = useState({});
   const [usernameExists, setUsernameExists] = useState(false);
+  const [publicRepos, setPublicRepos] = useState(0);
   const [loading, setLoading] = useState(true);
 
   let { name } = useParams();
@@ -40,10 +41,12 @@ const ResultContainer = () => {
       .then((response) => {
         setUsernameExists(true);
         setAvatarUrl(response.data.avatar_url);
+        setPublicRepos(response.data.public_repos);
         loadRepos();
       })
       .catch((err) => {
         setUsernameExists(false);
+        setPublicRepos(0);
         setError(err);
         userNotFound();
       });
@@ -109,7 +112,7 @@ const ResultContainer = () => {
         <div className="repos-header">
           <div className="inline-block">
             <h1>
-              Repositories <b>({repositories.length})</b>
+              Repositories <b>({publicRepos})</b>
             </h1>
             <button
               className="ml14"
