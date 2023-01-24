@@ -7,21 +7,33 @@ import "./styles.css";
 
 const SearchContainer = () => {
   const [username, setUsername] = useState("");
+  const [hidden, setHidden] = useState(true);
+
+  let navigate = useNavigate();
 
   const handleTextInput = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value.toLowerCase());
   };
 
   const handleKeyDown = (e: KeyboardEventInit) => {
-    if (e.key === "Enter") routeChange();
+    if (e.key === "Enter") handleSearch();
   };
 
-  let navigate = useNavigate();
+  const handleSearch = () => {
+    !username ? showErrorMessage() : handleRouteChange();
+  };
 
-  const routeChange = () => {
+  const handleRouteChange = () => {
     let path = `/user/${username}`;
-
     navigate(path);
+  };
+
+  const showErrorMessage = () => {
+    setHidden(false);
+  };
+
+  const closeErrorMessage = () => {
+    setHidden(true);
   };
 
   return (
@@ -39,9 +51,15 @@ const SearchContainer = () => {
             defaultValue={username}
           />
         </div>
-        <button className="btn-primary" onClick={routeChange}>
+        <button className="btn-primary" onClick={handleSearch}>
           <img src={search_icon} />
           Search
+        </button>
+      </div>
+      <div className={hidden ? "error-message hidden" : "error-message"}>
+        The user input cannot be empty
+        <button onClick={closeErrorMessage} title="Click to close">
+          x
         </button>
       </div>
     </div>

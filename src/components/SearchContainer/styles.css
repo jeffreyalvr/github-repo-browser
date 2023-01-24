@@ -7,6 +7,31 @@
   transition: 0.3s ease-out;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.error-message {
+  padding: 10px 20px;
+  border: 1px solid rgb(193, 149, 149);
+  background-color: rgb(255, 210, 224);
+  border-radius: 5px;
+  color: #000;
+  margin: 40px 0 0 0;
+}
+
+.error-message button {
+  margin-left: 15px !important;
+  border: 0 !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  font-weight: bold;
+  color: #000 !important;
+  padding: 10px !important;
+  height: 100% !important;
+  width: 40px !important;
+  border-radius: 50px !important;
+}
+
 .textbox-area {
   width: 100%;
   display: flex;
