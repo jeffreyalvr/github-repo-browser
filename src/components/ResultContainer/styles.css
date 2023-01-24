@@ -32,7 +32,7 @@ h1.label-loading img {
 }
 
 .repos-container .repos-header {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .repos-container .repos-header .inline-block {
@@ -49,6 +49,21 @@ h1.label-loading img {
   display: block;
   font-size: 0.93rem;
   color: #9a9a9a;
+}
+
+.repos-container .repos-pagination {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: auto;
+  padding: 20px 0;
+  overflow-x: auto;
+  margin: 0 0 20px 0;
+}
+
+.repos-container .repos-pagination button {
+  margin: 2px;
 }
 
 .repos-container .repo-item {

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, InputHTMLAttributes, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import search_icon from "../../assets/images/icons/search.png";
@@ -10,6 +10,10 @@ const SearchContainer = () => {
 
   const handleTextInput = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value.toLowerCase());
+  };
+
+  const handleKeyDown = (e: KeyboardEventInit) => {
+    if (e.key === "Enter") routeChange();
   };
 
   let navigate = useNavigate();
@@ -31,6 +35,7 @@ const SearchContainer = () => {
             type="text"
             placeholder="Who are you looking for?"
             onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInput(e)}
+            onKeyDown={(e: ChangeEvent<HTMLInputElement>) => handleKeyDown(e)}
             defaultValue={username}
           />
         </div>

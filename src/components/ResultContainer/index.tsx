@@ -9,7 +9,6 @@ import description_icon from "../../assets/images/icons/description.png";
 import language_icon from "../../assets/images/icons/language.png";
 import forks_icon from "../../assets/images/icons/forks.png";
 import switch_icon from "../../assets/images/icons/switch.png";
-
 import loading_icon from "../../assets/images/icons/loading.gif";
 
 import "./styles.css";
@@ -20,6 +19,11 @@ const ResultContainer = () => {
   const [error, setError] = useState({});
   const [usernameExists, setUsernameExists] = useState(false);
   const [publicRepos, setPublicRepos] = useState(0);
+  const [pagesTotal, setPagesTotal] = useState([
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  ]); // TODO: convert to number instead of array
+  const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
   let { name } = useParams();
@@ -28,6 +32,11 @@ const ResultContainer = () => {
   const routeChange = () => {
     let path = "/";
     navigate(path);
+  };
+
+  const changeCurrentPage = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    loadRepos();
   };
 
   const toggleDetails = (selectedId: number) => {
@@ -59,8 +68,9 @@ const ResultContainer = () => {
   };
 
   const loadRepos = async () => {
+    setLoading(true);
     await axios
-      .get(`https://api.github.com/users/${name}/repos`)
+      .get(`https://api.github.com/users/${name}/repos?page=${currentPage}`)
       .then((response) => {
         const data = response.data.map(
           ({
@@ -97,7 +107,6 @@ const ResultContainer = () => {
   };
 
   useEffect(() => {
-    setLoading(true);
     checkUsername();
   }, []);
 
@@ -126,7 +135,21 @@ const ResultContainer = () => {
 
           <span>You are looking all the public repositories from {name}.</span>
         </div>
-
+        {pagesTotal.length > 1 ? (
+          <div className="repos-pagination">
+            {pagesTotal.map((page, i) => (
+              <button
+                className={currentPage === i + 1 ? "btn-secondary" : ""}
+                onClick={() => changeCurrentPage(i + 1)}
+                key={i + 1}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="mb50"></div>
+        )}
         {repositories.map((repos) => (
           <div className="repo-item" key={repos["id"]}>
             <div className="title">
