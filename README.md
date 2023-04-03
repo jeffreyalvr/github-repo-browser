@@ -20,7 +20,7 @@ O projeto ainda precisa de algumas correções e funcionalidades, a saber:
 Há duas formas, sendo a execução local e a execução on-line via GitHub Pages.
 
 **1. GitHub Pages:**\
-Apenas acesse a seguinte URL: https://jeffreyalvr.github.io/github-repo-browser/
+Apenas acesse a seguinte URL: https://github-repo-browser.vercel.app/
   
 **2. Execução local:**\
   a. Realize o download/clone do projeto;\
