@@ -1,0 +1,72 @@
+{
+  "en_ca": {
+    "SearchContainer": {
+      "index": {
+        "search_container_h1": "Find everyone, here.",
+        "textbox_area_input": "Who are you looking for?",
+        "textbox_area_textbox_button_btn_primary": "Who are you looking for?",
+        "error_message": "The user input cannot be empty",
+        "error_message_button": "Click to close"
+      }
+    },
+    "ResultContainer": {
+      "index": {
+        "label_loading": "Loading...",
+        "result_wrapper_h1": "Repositories",
+        "result_wrapper_button_title": "Click to refresh the user's repositories",
+        "result_wrapper_button": "Refresh",
+        "result_wrapper_repos_header_span": "You are looking all the public repositories from",
+        "repo_item_left_detail_panel_description": "Description:",
+        "repo_item_left_detail_panel_language": "Language:",
+        "repo_item_left_detail_panel_forks": "Forks:",
+        "repo_item_right_detail_panel_btn_primary_title": "Open in GitHub",
+        "repo_item_right_detail_panel_btn_primary": "Open in GitHub",
+        "repo_item_user_container_btn_primary": "Open profile in GitHub",
+        "repo_item_user_container_btn_look_for_somebody_else": "Look for someone else"
+      }
+    },
+    "NotFoundContainer": {
+      "index": {
+        "box_container": "I'm sorry, but...",
+        "box_container_box_description_p1": "The user you've entered couldn't be found.",
+        "box_container_box_description_p2": "Did you type the name correctly?",
+        "box_container_btn_primary": "Look for someone else"
+      }
+    }
+  },
+  "pt_br": {
+    "SearchContainer": {
+      "index": {
+        "search_container_h1": "Encontre qualquer pessoa, aqui.",
+        "textbox_area_input": "O quê você está procurando?",
+        "textbox_area_textbox_button_btn_primary": "O quê você está procurando?",
+        "error_message": "O campo de usuário não pode ficar vazio.",
+        "error_message_button": "Clique para fechar"
+      }
+    },
+    "ResultContainer": {
+      "index": {
+        "label_loading": "Carregando...",
+        "result_wrapper_h1": "Repositórios",
+        "result_wrapper_button_title": "Clique para atualizar os repositórios do usuário",
+        "result_wrapper_button": "Atualizar",
+        "result_wrapper_repos_header_span": "Você está vendo todos os repositórios públicos de",
+        "repo_item_left_detail_panel_description": "Descrição:",
+        "repo_item_left_detail_panel_language": "Linguagem:",
+        "repo_item_left_detail_panel_forks": "Forks:",
+        "repo_item_right_detail_panel_btn_primary_title": "Abrir no GitHub",
+        "repo_item_right_detail_panel_btn_primary": "Abrir no GitHub",
+        "repo_item_user_container_btn_primary": "Abrir perfil no GitHub",
+        "repo_item_user_container_btn_look_for_somebody_else": "Procurar outro usuário"
+      }
+    },
+    "NotFoundContainer": {
+      "index": {
+        "box_container": "Desculpe-nos, mas...",
+        "box_container_box_description_p1": "O usuário especificado não pode ser encontrado.",
+        "box_container_box_description_p2": "Você digitou o nome corretamente?",
+        "box_container_btn_primary": "Procurar outro usuário"
+      }
+    }
+  }
+}
