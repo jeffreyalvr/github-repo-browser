@@ -15,7 +15,7 @@ const Footer = () => {
           ? book.pt_br.FooterComponent.footer_span
           : book.en_ca.FooterComponent.footer_span}{" "}
         <a
-          href="https://github.com/jeffreyalvr"
+          href="https://jeffreyalvr.dev"
           target="_blank"
           rel="noopener noreferrer"
           title={
