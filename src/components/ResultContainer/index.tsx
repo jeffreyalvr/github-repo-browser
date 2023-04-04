@@ -135,7 +135,7 @@ const ResultContainer = () => {
               <b>({publicRepos})</b>
             </h1>
             <button
-              className="ml14 loading-btn"
+              className="ml14 mh-40"
               title={
                 lang === "pt-br"
                   ? book.pt_br.ResultContainer.index.result_wrapper_button_title
