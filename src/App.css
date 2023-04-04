@@ -48,12 +48,13 @@ main h1 b {
 
 button {
   background: linear-gradient(180deg, #ffffff 0%, #ffffff 0.01%, #e5e5e5 100%);
-  border: 1px solid rgba(94, 94, 94, 0.19);
+  border: 1px solid rgba(222, 222, 222, 1);
   font-family: "Inter-Regular";
   border-radius: 20px;
   vertical-align: middle;
   padding: 0 25px;
-  height: 40px;
+  min-height: 40px;
+  height: auto;
   cursor: pointer;
 }
 
