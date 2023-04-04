@@ -19,7 +19,7 @@ O projeto ainda precisa de algumas correções e funcionalidades, a saber:
 ## Como testar?
 Há duas formas, sendo a execução local e a execução on-line via GitHub Pages.
 
-**1. GitHub Pages:**\
+**1. Aplicação no Vercel:**\
 Apenas acesse a seguinte URL: https://github-repo-browser.vercel.app/
   
 **2. Execução local:**\
