@@ -209,3 +209,7 @@ h1.label-loading img {
     font-size: 0.95rem;
   }
 }
+
+button.loading-btn {
+  max-height: 40px;
+}
