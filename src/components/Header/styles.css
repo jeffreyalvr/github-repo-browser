@@ -41,6 +41,29 @@ header {
   height: auto;
   width: auto;
   font-size: 1.55rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.title .languages {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 0 20px;
+  border-left: 1px solid #a3a3a3;
+  padding: 0 0 0 20px;
+}
+
+.title .languages .item {
+  height: 30px;
+  width: 30px;
+  margin: 0 3px;
+  cursor: pointer;
+}
+
+.title .languages .item img {
+  height: 100%;
+  width: 100%;
+  border: none;
 }
 
 .small .title {
@@ -67,5 +90,22 @@ header {
   header .github-logo {
     height: 120px !important;
     width: 120px !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .title {
+    flex-direction: column;
+  }
+
+  .title .languages {
+    justify-content: center;
+    border: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+  }
+
+  .search-container h1 {
+    text-align: center;
   }
 }

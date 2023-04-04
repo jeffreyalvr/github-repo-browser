@@ -1,5 +1,9 @@
-import React, { ChangeEvent, InputHTMLAttributes, useState } from "react";
+import { ChangeEvent, useState, useContext } from "react";
+import { LanguageContext } from "../../Contexts/LanguageContext";
+
 import { useNavigate } from "react-router-dom";
+
+import book from "../../language/book.json";
 
 import search_icon from "../../assets/images/icons/search.png";
 
@@ -8,6 +12,8 @@ import "./styles.css";
 const SearchContainer = () => {
   const [username, setUsername] = useState("");
   const [hidden, setHidden] = useState(true);
+
+  const { lang } = useContext(LanguageContext);
 
   let navigate = useNavigate();
 
@@ -38,14 +44,22 @@ const SearchContainer = () => {
 
   return (
     <div className="search-container">
-      <h1>Find everyone, here.</h1>
+      <h1>
+        {lang === "pt-br"
+          ? book.pt_br.SearchContainer.index.search_container_h1
+          : book.en_ca.SearchContainer.index.search_container_h1}
+      </h1>
 
       <div className="textbox-area">
         <div className="textbox">
           <b>@</b>
           <input
             type="text"
-            placeholder="Who are you looking for?"
+            placeholder={
+              lang === "pt-br"
+                ? book.pt_br.SearchContainer.index.textbox_area_input
+                : book.en_ca.SearchContainer.index.textbox_area_input
+            }
             onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInput(e)}
             onKeyDown={(e: ChangeEvent<HTMLInputElement>) => handleKeyDown(e)}
             defaultValue={username}
@@ -53,12 +67,25 @@ const SearchContainer = () => {
         </div>
         <button className="btn-primary" onClick={handleSearch}>
           <img src={search_icon} />
-          Search
+          {lang === "pt-br"
+            ? book.pt_br.SearchContainer.index
+                .textbox_area_textbox_button_btn_primary
+            : book.en_ca.SearchContainer.index
+                .textbox_area_textbox_button_btn_primary}
         </button>
       </div>
       <div className={hidden ? "error-message hidden" : "error-message"}>
-        The user input cannot be empty
-        <button onClick={closeErrorMessage} title="Click to close">
+        {lang === "pt-br"
+          ? book.pt_br.SearchContainer.index.error_message
+          : book.en_ca.SearchContainer.index.error_message}
+        <button
+          onClick={closeErrorMessage}
+          title={
+            lang === "pt-br"
+              ? book.pt_br.SearchContainer.index.error_message_button
+              : book.en_ca.SearchContainer.index.error_message_button
+          }
+        >
           x
         </button>
       </div>

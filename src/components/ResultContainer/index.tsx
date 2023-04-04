@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { LanguageContext } from "../../Contexts/LanguageContext";
+
 import axios from "axios";
+
+import book from "../../language/book.json";
 
 import arrow_icon from "../../assets/images/icons/arrow.png";
 import external_link_icon from "../../assets/images/icons/external_link.png";
@@ -28,6 +32,8 @@ const ResultContainer = () => {
 
   let { name } = useParams();
   let navigate = useNavigate();
+
+  const { lang } = useContext(LanguageContext);
 
   const routeChange = () => {
     let path = "/";
@@ -113,7 +119,9 @@ const ResultContainer = () => {
   return loading ? (
     <h1 className="label-loading">
       <img src={loading_icon} />
-      Loading...
+      {lang === "pt-br"
+        ? book.pt_br.ResultContainer.index.label_loading
+        : book.en_ca.ResultContainer.index.label_loading}
     </h1>
   ) : (
     <div className="result-wrapper">
@@ -121,19 +129,35 @@ const ResultContainer = () => {
         <div className="repos-header">
           <div className="inline-block">
             <h1>
-              Repositories <b>({publicRepos})</b>
+              {lang === "pt-br"
+                ? book.pt_br.ResultContainer.index.result_wrapper_h1
+                : book.en_ca.ResultContainer.index.result_wrapper_h1}
+              <b>({publicRepos})</b>
             </h1>
             <button
               className="ml14"
-              title="Click to refresh the user's repositories"
+              title={
+                lang === "pt-br"
+                  ? book.pt_br.ResultContainer.index.result_wrapper_button_title
+                  : book.en_ca.ResultContainer.index.result_wrapper_button_title
+              }
               onClick={loadRepos}
             >
               <img src={refresh_icon} />
-              Refresh
+              {lang === "pt-br"
+                ? book.pt_br.ResultContainer.index.result_wrapper_button
+                : book.en_ca.ResultContainer.index.result_wrapper_button}
             </button>
           </div>
 
-          <span>You are looking all the public repositories from {name}.</span>
+          <span>
+            {lang === "pt-br"
+              ? book.pt_br.ResultContainer.index
+                  .result_wrapper_repos_header_span
+              : book.en_ca.ResultContainer.index
+                  .result_wrapper_repos_header_span}{" "}
+            {name}.
+          </span>
         </div>
         {pagesTotal.length > 1 ? (
           <div className="repos-pagination">
@@ -156,7 +180,11 @@ const ResultContainer = () => {
               {repos["name"]}{" "}
               <button
                 className="btn-arrow"
-                title="Show details"
+                title={
+                  lang === "pt-br"
+                    ? book.pt_br.ResultContainer.index.repo_item_show_details
+                    : book.en_ca.ResultContainer.index.repo_item_show_details
+                }
                 onClick={() => toggleDetails(repos["id"])}
               >
                 <img src={arrow_icon} />
@@ -169,21 +197,41 @@ const ResultContainer = () => {
                   <span>
                     <b>
                       <img src={description_icon} />
-                      Description:{" "}
+                      {lang === "pt-br"
+                        ? book.pt_br.ResultContainer.index
+                            .repo_item_left_detail_panel_description
+                        : book.en_ca.ResultContainer.index
+                            .repo_item_left_detail_panel_description}{" "}
                     </b>
-                    {repos["description"] || "Not provided"}
+                    {repos["description"] || lang === "pt-br"
+                      ? book.pt_br.ResultContainer.index
+                          .repo_item_left_detail_panel_not_provided
+                      : book.en_ca.ResultContainer.index
+                          .repo_item_left_detail_panel_not_provided}
                   </span>
                   <span>
                     <b>
                       <img src={language_icon} />
-                      Language:{" "}
+                      {lang === "pt-br"
+                        ? book.pt_br.ResultContainer.index
+                            .repo_item_left_detail_panel_language
+                        : book.en_ca.ResultContainer.index
+                            .repo_item_left_detail_panel_language}{" "}
                     </b>
-                    {repos["language"]}
+                    {repos["language"] || lang === "pt-br"
+                      ? book.pt_br.ResultContainer.index
+                          .repo_item_left_detail_panel_not_provided
+                      : book.en_ca.ResultContainer.index
+                          .repo_item_left_detail_panel_not_provided}
                   </span>
                   <span>
                     <b>
                       <img src={forks_icon} />
-                      Forks:{" "}
+                      {lang === "pt-br"
+                        ? book.pt_br.ResultContainer.index
+                            .repo_item_left_detail_panel_forks
+                        : book.en_ca.ResultContainer.index
+                            .repo_item_left_detail_panel_forks}{" "}
                     </b>
                     {repos["forks_count"]}
                   </span>
@@ -195,9 +243,13 @@ const ResultContainer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <button className="btn-primary" title="Open in GitHub">
+                    <button className="btn-primary">
                       <img src={external_link_icon} />
-                      Open in GitHub
+                      {lang === "pt-br"
+                        ? book.pt_br.ResultContainer.index
+                            .btn_primary_open_github
+                        : book.en_ca.ResultContainer.index
+                            .btn_primary_open_github}
                     </button>
                   </a>
                 </div>
@@ -209,7 +261,7 @@ const ResultContainer = () => {
 
       <div className="user-container">
         <div className="profile-pic">
-          <img src={avatarUrl} alt={`${name}'s avatar`} />
+          <img src={avatarUrl} alt={`${name}`} />
         </div>
         <p>@{name}</p>
 
@@ -220,13 +272,19 @@ const ResultContainer = () => {
         >
           <button className="btn-primary">
             <img src={external_link_icon} />
-            Open profile in GitHub
+            {lang === "pt-br"
+              ? book.pt_br.ResultContainer.index.btn_primary_open_github
+              : book.en_ca.ResultContainer.index.btn_primary_open_github}
           </button>
         </a>
 
         <button onClick={routeChange}>
           <img src={switch_icon} />
-          Look for someone else
+          {lang === "pt-br"
+            ? book.pt_br.ResultContainer.index
+                .repo_item_user_container_btn_look_for_somebody_else
+            : book.en_ca.ResultContainer.index
+                .repo_item_user_container_btn_look_for_somebody_else}
         </button>
       </div>
     </div>
