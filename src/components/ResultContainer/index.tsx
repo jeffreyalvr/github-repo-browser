@@ -125,7 +125,7 @@ const ResultContainer = () => {
       .catch((err) => setError(err));
   };
 
-  const handleItemsPerPage = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleItemsPerPage = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = Number(e.target.value);
     setItemsPerPage(value);
   };
@@ -193,7 +193,10 @@ const ResultContainer = () => {
 
           <div className="repos-per-page">
             <span>Itens por página</span>
-            <select value={itemsPerPage} onChange={(e) => handleItemsPerPage}>
+            <select
+              value={itemsPerPage}
+              onChange={(e) => handleItemsPerPage(e)}
+            >
               <option value={5}>5</option>
               <option value={10}>10</option>
               <option value={25}>25</option>
