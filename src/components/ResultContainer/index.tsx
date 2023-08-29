@@ -1,10 +1,4 @@
-import {
-  useState,
-  useEffect,
-  useContext,
-  HTMLAttributeAnchorTarget,
-  FormEvent,
-} from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { LanguageContext } from "../../Contexts/LanguageContext";
 
@@ -21,6 +15,9 @@ import forks_icon from "../../assets/images/icons/forks.png";
 import switch_icon from "../../assets/images/icons/switch.png";
 import loading_icon from "../../assets/images/icons/loading.gif";
 
+import previous_page_icon from "../../assets/images/icons/arrow_left.png";
+import next_page_icon from "../../assets/images/icons/arrow_right.png";
+
 import "./styles.css";
 
 const ResultContainer = () => {
@@ -29,10 +26,12 @@ const ResultContainer = () => {
   const [error, setError] = useState({});
   const [usernameExists, setUsernameExists] = useState(false);
   const [publicRepos, setPublicRepos] = useState(0);
-  const [pagesTotal, setPagesTotal] = useState([1, 1, 1, 1, 1]); // TODO: convert to number instead of array
+  const [pagesTotal, setPagesTotal] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  const [pagesArray, setPagesArray] = useState([]);
 
   let { name } = useParams();
   let navigate = useNavigate();
@@ -47,16 +46,38 @@ const ResultContainer = () => {
     loadRepos();
   }, [itemsPerPage, currentPage]);
 
+  useEffect(() => {
+    if (currentPage === pagesTotal) return;
+
+    let array = [];
+
+    for (let current = currentPage; current < currentPage + 5; current++) {
+      array.push(current);
+    }
+
+    array = array.filter((n) => n < pagesTotal);
+
+    setPagesArray(array);
+  }, [currentPage]);
+
+  const handlePreviousPage = () => {
+    changeCurrentPage(currentPage - 1);
+  };
+
+  const handleNextPage = () => {
+    changeCurrentPage(currentPage + 1);
+  };
+
   const routeChange = () => {
     let path = "/";
     navigate(path);
   };
 
-  const changeCurrentPage = (pageNumber: number) => {
+  const changeCurrentPage = (pageNumber: Number) => {
     setCurrentPage(pageNumber);
   };
 
-  const toggleDetails = (selectedId: number) => {
+  const toggleDetails = (selectedId: Number) => {
     let repo = repositories.find((repo) => repo["id"] === selectedId);
     // console.log(repo["username"]);
   };
@@ -175,17 +196,61 @@ const ResultContainer = () => {
         </div>
 
         <div className="repos-nav-container">
-          {pagesTotal.length > 1 ? (
+          {pagesTotal > 1 ? (
             <div className="repos-pagination">
-              {pagesTotal.map((page, i) => (
-                <button
-                  className={currentPage === i + 1 ? "btn-secondary" : ""}
-                  onClick={() => changeCurrentPage(i + 1)}
-                  key={i + 1}
-                >
-                  {i + 1}
+              {/* INFO: implementação anterior */}
+              {/* <button
+                className={currentPage === i + 1 ? "btn-secondary" : ""}
+                onClick={() => changeCurrentPage(i + 1)}
+                key={i + 1}
+              >
+                pagina
+              </button> */}
+
+              {/* INFO: implementação nova */}
+              {currentPage > 5 && (
+                <>
+                  <button onClick={() => changeCurrentPage(1)}>Início</button>
+
+                  <button
+                    className="arrow-btn"
+                    onClick={() => handlePreviousPage()}
+                  >
+                    <img src={previous_page_icon} alt="Anterior" />
+                  </button>
+                </>
+              )}
+
+              {pagesArray.map((number: Number) => {
+                return (
+                  <button
+                    className={number === currentPage ? "active" : undefined}
+                    onClick={() => changeCurrentPage(number)}
+                    key={number.toString()}
+                  >
+                    {number.toString()}
+                  </button>
+                );
+              })}
+
+              {currentPage < pagesTotal && (
+                <button className="arrow-btn" onClick={() => handleNextPage()}>
+                  <img src={next_page_icon} alt="Próxima" />
                 </button>
-              ))}
+              )}
+
+              {/* exibe que existem mais itens entre o 5 item da lista de páginas e a última página */}
+              {pagesArray[pagesArray.length - 1] < pagesTotal - 1 && (
+                <span>&bull;&bull;&bull;</span>
+              )}
+
+              {/* botão da última página da lista */}
+              <button
+                className={currentPage === pagesTotal ? "active" : undefined}
+                onClick={() => changeCurrentPage(pagesTotal)}
+              >
+                {pagesTotal}
+              </button>
             </div>
           ) : (
             <div className="mb50"></div>

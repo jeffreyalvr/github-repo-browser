@@ -49,6 +49,7 @@ h1.label-loading img {
   display: block;
   font-size: 0.93rem;
   color: #9a9a9a;
+  margin: 0 !important;
 }
 
 .repos-container .repos-nav-container {
@@ -97,6 +98,12 @@ h1.label-loading img {
 
 .repos-container .repos-nav-container .repos-pagination button {
   margin: 2px;
+}
+
+.repos-container .repos-nav-container .repos-pagination span {
+  padding: 0 25px;
+  font-weight: bold;
+  color: #b8b8b8;
 }
 
 .repos-container .repo-item {
