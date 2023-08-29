@@ -1,4 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import {
+  useState,
+  useEffect,
+  useContext,
+  HTMLAttributeAnchorTarget,
+  FormEvent,
+} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { LanguageContext } from "../../Contexts/LanguageContext";
 
@@ -26,11 +32,20 @@ const ResultContainer = () => {
   const [pagesTotal, setPagesTotal] = useState([1, 1, 1, 1, 1]); // TODO: convert to number instead of array
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   let { name } = useParams();
   let navigate = useNavigate();
 
   const { lang } = useContext(LanguageContext);
+
+  useEffect(() => {
+    checkUsername();
+  }, []);
+
+  useEffect(() => {
+    loadRepos();
+  }, [itemsPerPage, currentPage]);
 
   const routeChange = () => {
     let path = "/";
@@ -39,7 +54,6 @@ const ResultContainer = () => {
 
   const changeCurrentPage = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-    loadRepos();
   };
 
   const toggleDetails = (selectedId: number) => {
@@ -73,7 +87,9 @@ const ResultContainer = () => {
   const loadRepos = async () => {
     setLoading(true);
     await axios
-      .get(`https://api.github.com/users/${name}/repos?page=${currentPage}`)
+      .get(
+        `https://api.github.com/users/${name}/repos?page=${currentPage}&per_page=${itemsPerPage}`
+      )
       .then((response) => {
         const data = response.data.map(
           ({
@@ -109,9 +125,10 @@ const ResultContainer = () => {
       .catch((err) => setError(err));
   };
 
-  useEffect(() => {
-    checkUsername();
-  }, []);
+  const handleItemsPerPage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+    setItemsPerPage(value);
+  };
 
   return loading ? (
     <h1 className="label-loading">
@@ -156,21 +173,34 @@ const ResultContainer = () => {
             {name}.
           </span>
         </div>
-        {pagesTotal.length > 1 ? (
-          <div className="repos-pagination">
-            {pagesTotal.map((page, i) => (
-              <button
-                className={currentPage === i + 1 ? "btn-secondary" : ""}
-                onClick={() => changeCurrentPage(i + 1)}
-                key={i + 1}
-              >
-                {i + 1}
-              </button>
-            ))}
+
+        <div className="repos-nav-container">
+          {pagesTotal.length > 1 ? (
+            <div className="repos-pagination">
+              {pagesTotal.map((page, i) => (
+                <button
+                  className={currentPage === i + 1 ? "btn-secondary" : ""}
+                  onClick={() => changeCurrentPage(i + 1)}
+                  key={i + 1}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div className="mb50"></div>
+          )}
+
+          <div className="repos-per-page">
+            <span>Itens por página</span>
+            <select value={itemsPerPage} onChange={(e) => handleItemsPerPage}>
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={25}>25</option>
+            </select>
           </div>
-        ) : (
-          <div className="mb50"></div>
-        )}
+        </div>
+
         {repositories.map((repos) => (
           <div className="repo-item" key={repos["id"]}>
             <div className="title">
