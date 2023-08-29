@@ -54,7 +54,7 @@ h1.label-loading img {
 .repos-container .repos-pagination {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   width: 100%;
   height: auto;
   padding: 20px 0;
@@ -153,6 +153,12 @@ h1.label-loading img {
   background-repeat: no-repeat;
   height: 100%;
   width: 100%;
+}
+
+.user-container .profile-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media screen and (max-width: 1380px) {

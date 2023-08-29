@@ -23,10 +23,7 @@ const ResultContainer = () => {
   const [error, setError] = useState({});
   const [usernameExists, setUsernameExists] = useState(false);
   const [publicRepos, setPublicRepos] = useState(0);
-  const [pagesTotal, setPagesTotal] = useState([
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-  ]); // TODO: convert to number instead of array
+  const [pagesTotal, setPagesTotal] = useState([1, 1, 1, 1, 1]); // TODO: convert to number instead of array
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
@@ -263,29 +260,31 @@ const ResultContainer = () => {
         <div className="profile-pic">
           <img src={avatarUrl} alt={`${name}`} />
         </div>
-        <p>@{name}</p>
+        <div className="profile-details">
+          <p>@{name}</p>
 
-        <a
-          href={`https://github.com/${name}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <button className="btn-primary">
-            <img src={external_link_icon} />
+          <a
+            href={`https://github.com/${name}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="btn-primary">
+              <img src={external_link_icon} />
+              {lang === "pt-br"
+                ? book.pt_br.ResultContainer.index.btn_primary_open_github
+                : book.en_ca.ResultContainer.index.btn_primary_open_github}
+            </button>
+          </a>
+
+          <button onClick={routeChange}>
+            <img src={switch_icon} />
             {lang === "pt-br"
-              ? book.pt_br.ResultContainer.index.btn_primary_open_github
-              : book.en_ca.ResultContainer.index.btn_primary_open_github}
+              ? book.pt_br.ResultContainer.index
+                  .repo_item_user_container_btn_look_for_somebody_else
+              : book.en_ca.ResultContainer.index
+                  .repo_item_user_container_btn_look_for_somebody_else}
           </button>
-        </a>
-
-        <button onClick={routeChange}>
-          <img src={switch_icon} />
-          {lang === "pt-br"
-            ? book.pt_br.ResultContainer.index
-                .repo_item_user_container_btn_look_for_somebody_else
-            : book.en_ca.ResultContainer.index
-                .repo_item_user_container_btn_look_for_somebody_else}
-        </button>
+        </div>
       </div>
     </div>
   );
