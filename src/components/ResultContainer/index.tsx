@@ -259,10 +259,9 @@ const ResultContainer = () => {
       <div className="user-container">
         <div className="profile-pic">
           <img src={avatarUrl} alt={`${name}`} />
+          <p>@{name}</p>
         </div>
         <div className="profile-details">
-          <p>@{name}</p>
-
           <a
             href={`https://github.com/${name}`}
             target="_blank"
