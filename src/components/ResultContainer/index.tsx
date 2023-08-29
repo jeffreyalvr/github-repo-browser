@@ -200,7 +200,7 @@ const ResultContainer = () => {
                         : book.en_ca.ResultContainer.index
                             .repo_item_left_detail_panel_description}{" "}
                     </b>
-                    {repos["description"] || lang === "pt-br"
+                    {lang === "pt-br"
                       ? book.pt_br.ResultContainer.index
                           .repo_item_left_detail_panel_not_provided
                       : book.en_ca.ResultContainer.index
@@ -215,7 +215,7 @@ const ResultContainer = () => {
                         : book.en_ca.ResultContainer.index
                             .repo_item_left_detail_panel_language}{" "}
                     </b>
-                    {repos["language"] || lang === "pt-br"
+                    {lang === "pt-br"
                       ? book.pt_br.ResultContainer.index
                           .repo_item_left_detail_panel_not_provided
                       : book.en_ca.ResultContainer.index
