@@ -1,4 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import {
+  useState,
+  useEffect,
+  useContext,
+  ReactNode,
+  SetStateAction,
+} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { LanguageContext } from "../../Contexts/LanguageContext";
 
@@ -31,7 +37,7 @@ const ResultContainer = () => {
   const [loading, setLoading] = useState(true);
   const [itemsPerPage, setItemsPerPage] = useState(5);
 
-  const [pagesArray, setPagesArray] = useState([]);
+  const [pagesArray, setPagesArray] = useState<number[]>([]);
 
   let { name } = useParams();
   let navigate = useNavigate();
@@ -49,7 +55,7 @@ const ResultContainer = () => {
   useEffect(() => {
     if (currentPage === pagesTotal) return;
 
-    let array = [];
+    let array: Array<number> = [];
 
     for (let current = currentPage; current < currentPage + 5; current++) {
       array.push(current);
@@ -73,11 +79,11 @@ const ResultContainer = () => {
     navigate(path);
   };
 
-  const changeCurrentPage = (pageNumber: Number) => {
+  const changeCurrentPage = (pageNumber: SetStateAction<number>) => {
     setCurrentPage(pageNumber);
   };
 
-  const toggleDetails = (selectedId: Number) => {
+  const toggleDetails = (selectedId: number) => {
     let repo = repositories.find((repo) => repo["id"] === selectedId);
     // console.log(repo["username"]);
   };
@@ -198,16 +204,6 @@ const ResultContainer = () => {
         <div className="repos-nav-container">
           {pagesTotal > 1 ? (
             <div className="repos-pagination">
-              {/* INFO: implementação anterior */}
-              {/* <button
-                className={currentPage === i + 1 ? "btn-secondary" : ""}
-                onClick={() => changeCurrentPage(i + 1)}
-                key={i + 1}
-              >
-                pagina
-              </button> */}
-
-              {/* INFO: implementação nova */}
               {currentPage > 5 && (
                 <>
                   <button onClick={() => changeCurrentPage(1)}>Início</button>
@@ -221,7 +217,7 @@ const ResultContainer = () => {
                 </>
               )}
 
-              {pagesArray.map((number: Number) => {
+              {pagesArray.map((number: number) => {
                 return (
                   <button
                     className={number === currentPage ? "active" : undefined}
