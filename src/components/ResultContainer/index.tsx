@@ -1,10 +1,4 @@
-import {
-  useState,
-  useEffect,
-  useContext,
-  ReactNode,
-  SetStateAction,
-} from "react";
+import { useState, useEffect, useContext, SetStateAction } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { LanguageContext } from "../../Contexts/LanguageContext";
 
@@ -36,7 +30,6 @@ const ResultContainer = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [itemsPerPage, setItemsPerPage] = useState(5);
-
   const [pagesArray, setPagesArray] = useState<number[]>([]);
 
   let { name } = useParams();
@@ -84,12 +77,17 @@ const ResultContainer = () => {
   };
 
   const toggleDetails = (selectedId: number) => {
-    let repo = repositories.find((repo) => repo["id"] === selectedId);
-    // console.log(repo["username"]);
+    let novaLista = [...repositories];
+
+    const repoById = novaLista.filter((repo) => repo["id"] === selectedId);
+    // repoById["toggleStatus"] = !repoById["toggleStatus"];
+    console.log(...repoById);
+
+    setRepositories(novaLista);
   };
 
-  const checkUsername = async () => {
-    await axios
+  const checkUsername = () => {
+    axios
       .get(`https://api.github.com/users/${name}`)
       .then((response) => {
         setUsernameExists(true);
@@ -113,43 +111,33 @@ const ResultContainer = () => {
 
   const loadRepos = async () => {
     setLoading(true);
-    await axios
-      .get(
-        `https://api.github.com/users/${name}/repos?page=${currentPage}&per_page=${itemsPerPage}`
-      )
-      .then((response) => {
-        const data = response.data.map(
-          ({
-            id,
-            name,
-            language,
-            html_url,
-            description,
-            forks_count,
-          }: {
-            id: number;
-            name: string;
-            language: string;
-            html_url: string;
-            description: string;
-            forks_count: number;
-          }) => {
-            return {
-              id,
-              name,
-              language,
-              html_url,
-              description,
-              forks_count,
-              showRepoDetails: true,
-            };
-          }
-        );
 
-        setLoading(false);
-        setRepositories(data);
+    const response = await axios.get(
+      `https://api.github.com/users/${name}/repos?page=${currentPage}&per_page=${itemsPerPage}`
+    );
+
+    const filteredData = response.data.map(
+      (repo: {
+        id: number;
+        name: string;
+        language: string;
+        html_url: string;
+        description: string;
+        forks_count: number;
+        toggleStatus: boolean;
+      }) => ({
+        id: repo.id,
+        name: repo.name,
+        language: repo.language,
+        html_url: repo.html_url,
+        description: repo.description,
+        forks_count: repo.forks_count,
+        toggleStatus: false,
       })
-      .catch((err) => setError(err));
+    );
+
+    setLoading(false);
+    setRepositories(filteredData);
   };
 
   const handleItemsPerPage = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -268,7 +256,7 @@ const ResultContainer = () => {
         {repositories.map((repos) => (
           <div className="repo-item" key={repos["id"]}>
             <div className="title">
-              {repos["name"]}{" "}
+              {repos["name"]}
               <button
                 className="btn-arrow"
                 title={
@@ -282,70 +270,71 @@ const ResultContainer = () => {
               </button>
             </div>
 
-            {repos["showRepoDetails"] ? (
-              <div className="details">
-                <div className="left-detail-panel">
-                  <span>
-                    <b>
-                      <img src={description_icon} />
-                      {lang === "pt-br"
-                        ? book.pt_br.ResultContainer.index
-                            .repo_item_left_detail_panel_description
-                        : book.en_ca.ResultContainer.index
-                            .repo_item_left_detail_panel_description}{" "}
-                    </b>
+            <div
+              className={`details ${
+                repos["toggleStatus"] ? undefined : "hidden"
+              }`}
+            >
+              <div className="left-detail-panel">
+                <span>
+                  <b>
+                    <img src={description_icon} />
                     {lang === "pt-br"
                       ? book.pt_br.ResultContainer.index
-                          .repo_item_left_detail_panel_not_provided
+                          .repo_item_left_detail_panel_description
                       : book.en_ca.ResultContainer.index
-                          .repo_item_left_detail_panel_not_provided}
-                  </span>
-                  <span>
-                    <b>
-                      <img src={language_icon} />
-                      {lang === "pt-br"
-                        ? book.pt_br.ResultContainer.index
-                            .repo_item_left_detail_panel_language
-                        : book.en_ca.ResultContainer.index
-                            .repo_item_left_detail_panel_language}{" "}
-                    </b>
+                          .repo_item_left_detail_panel_description}{" "}
+                  </b>
+                  {lang === "pt-br"
+                    ? book.pt_br.ResultContainer.index
+                        .repo_item_left_detail_panel_not_provided
+                    : book.en_ca.ResultContainer.index
+                        .repo_item_left_detail_panel_not_provided}
+                </span>
+                <span>
+                  <b>
+                    <img src={language_icon} />
                     {lang === "pt-br"
                       ? book.pt_br.ResultContainer.index
-                          .repo_item_left_detail_panel_not_provided
+                          .repo_item_left_detail_panel_language
                       : book.en_ca.ResultContainer.index
-                          .repo_item_left_detail_panel_not_provided}
-                  </span>
-                  <span>
-                    <b>
-                      <img src={forks_icon} />
-                      {lang === "pt-br"
-                        ? book.pt_br.ResultContainer.index
-                            .repo_item_left_detail_panel_forks
-                        : book.en_ca.ResultContainer.index
-                            .repo_item_left_detail_panel_forks}{" "}
-                    </b>
-                    {repos["forks_count"]}
-                  </span>
-                </div>
-
-                <div className="right-detail-panel">
-                  <a
-                    href={repos["html_url"]}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button className="btn-primary">
-                      <img src={external_link_icon} />
-                      {lang === "pt-br"
-                        ? book.pt_br.ResultContainer.index
-                            .btn_primary_open_github
-                        : book.en_ca.ResultContainer.index
-                            .btn_primary_open_github}
-                    </button>
-                  </a>
-                </div>
+                          .repo_item_left_detail_panel_language}{" "}
+                  </b>
+                  {lang === "pt-br"
+                    ? book.pt_br.ResultContainer.index
+                        .repo_item_left_detail_panel_not_provided
+                    : book.en_ca.ResultContainer.index
+                        .repo_item_left_detail_panel_not_provided}
+                </span>
+                <span>
+                  <b>
+                    <img src={forks_icon} />
+                    {lang === "pt-br"
+                      ? book.pt_br.ResultContainer.index
+                          .repo_item_left_detail_panel_forks
+                      : book.en_ca.ResultContainer.index
+                          .repo_item_left_detail_panel_forks}{" "}
+                  </b>
+                  {repos["forks_count"]}
+                </span>
               </div>
-            ) : null}
+
+              <div className="right-detail-panel">
+                <a
+                  href={repos["html_url"]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="btn-primary">
+                    <img src={external_link_icon} />
+                    {lang === "pt-br"
+                      ? book.pt_br.ResultContainer.index.btn_primary_open_github
+                      : book.en_ca.ResultContainer.index
+                          .btn_primary_open_github}
+                  </button>
+                </a>
+              </div>
+            </div>
           </div>
         ))}
       </div>

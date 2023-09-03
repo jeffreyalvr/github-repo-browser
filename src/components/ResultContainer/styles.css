@@ -129,6 +129,10 @@ h1.label-loading img {
   flex-wrap: nowrap;
 }
 
+.repos-container .repo-item .details .hidden {
+  display: none !important;
+}
+
 .repos-container .repo-item .details .left-detail-panel {
   height: auto;
   width: 100%;
