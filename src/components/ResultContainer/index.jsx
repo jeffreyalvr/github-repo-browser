@@ -29,6 +29,7 @@ const ResultContainer = () => {
   const [repositories, setRepositories] = useState([]);
   const [avatarUrl, setAvatarUrl] = useState("");
   const [followers, setFollowers] = useState(0);
+  const [followersFixed, setFollowersFixed] = useState(0);
   const [error, setError] = useState({});
   const [usernameExists, setUsernameExists] = useState(false);
   const [publicRepos, setPublicRepos] = useState(0);
@@ -46,6 +47,20 @@ const ResultContainer = () => {
   useEffect(() => {
     checkUsername();
   }, []);
+
+  useEffect(() => {
+    let number = 0;
+
+    if (followers >= 1000000) {
+      number = (followers / 1000000).toFixed(1) + "M";
+    } else if (followers >= 1000) {
+      number = (followers / 1000).toFixed(1) + "K";
+    } else {
+      number = followers.toString();
+    }
+
+    setFollowersFixed(number);
+  }, [followers]);
 
   useEffect(() => {
     loadRepos();
@@ -416,7 +431,7 @@ const ResultContainer = () => {
           <p>@{name}</p>
           <span>
             <img src={followers_icon} />
-            <b>{followers}</b> seguidores
+            <b>{followersFixed}</b> seguidores
           </span>
         </div>
         <div className="profile-details">
