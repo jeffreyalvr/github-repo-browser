@@ -20,10 +20,15 @@
         "repo_item_left_detail_panel_description": "Description:",
         "repo_item_left_detail_panel_language": "Language:",
         "repo_item_left_detail_panel_forks": "Forks:",
-        "repo_item_left_detail_panel_not_provided": "Not provided",
+        "repo_item_left_detail_panel_watchers": "Watchers:",
+        "repo_item_left_detail_panel_topics": "Topics:",
+        "repo_item_left_detail_panel_license": "License:",
+        "repo_item_left_detail_panel_stars": "Stars:",
+        "repo_item_left_detail_panel_not_provided": "Not provided.",
         "btn_primary_open_github": "Open in GitHub",
         "repo_item_user_container_btn_primary": "Open profile in GitHub",
-        "repo_item_user_container_btn_look_for_somebody_else": "Look for someone else"
+        "repo_item_user_container_btn_look_for_somebody_else": "Look for someone else",
+        "repo_item_user_container_followers": "followers"
       }
     },
     "NotFoundContainer": {
@@ -62,10 +67,15 @@
         "repo_item_left_detail_panel_description": "Descrição:",
         "repo_item_left_detail_panel_language": "Linguagem:",
         "repo_item_left_detail_panel_forks": "Forks:",
-        "repo_item_left_detail_panel_not_provided": "Não especificado",
+        "repo_item_left_detail_panel_watchers": "Observadores:",
+        "repo_item_left_detail_panel_topics": "Tópicos:",
+        "repo_item_left_detail_panel_license": "Licença:",
+        "repo_item_left_detail_panel_stars": "Estrelas:",
+        "repo_item_left_detail_panel_not_provided": "Não especificado.",
         "btn_primary_open_github": "Abrir no GitHub",
         "repo_item_user_container_btn_primary": "Abrir perfil no GitHub",
-        "repo_item_user_container_btn_look_for_somebody_else": "Procurar outro usuário"
+        "repo_item_user_container_btn_look_for_somebody_else": "Procurar outro usuário",
+        "repo_item_user_container_followers": "seguidores"
       }
     },
     "NotFoundContainer": {

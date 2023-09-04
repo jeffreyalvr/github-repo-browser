@@ -12,6 +12,11 @@ import refresh_icon from "../../assets/images/icons/refresh.png";
 import description_icon from "../../assets/images/icons/description.png";
 import language_icon from "../../assets/images/icons/language.png";
 import forks_icon from "../../assets/images/icons/forks.png";
+import topics_icon from "../../assets/images/icons/topics.png";
+import stars_icon from "../../assets/images/icons/stars.png";
+import watchers_icon from "../../assets/images/icons/watchers.png";
+import license_icon from "../../assets/images/icons/license.png";
+import followers_icon from "../../assets/images/icons/followers.png";
 import switch_icon from "../../assets/images/icons/switch.png";
 import loading_icon from "../../assets/images/icons/loading.gif";
 
@@ -23,6 +28,7 @@ import "./styles.css";
 const ResultContainer = () => {
   const [repositories, setRepositories] = useState([]);
   const [avatarUrl, setAvatarUrl] = useState("");
+  const [followers, setFollowers] = useState(0);
   const [error, setError] = useState({});
   const [usernameExists, setUsernameExists] = useState(false);
   const [publicRepos, setPublicRepos] = useState(0);
@@ -92,6 +98,7 @@ const ResultContainer = () => {
       .then((response) => {
         setUsernameExists(true);
         setAvatarUrl(response.data.avatar_url);
+        setFollowers(response.data.followers);
         setPublicRepos(response.data.public_repos);
         loadRepos();
       })
@@ -121,8 +128,10 @@ const ResultContainer = () => {
       name: repo.name,
       language: repo.language,
       html_url: repo.html_url,
-      description: repo.description,
-      forks_count: repo.forks_count,
+      topics: repo.topics,
+      forks: repo.forks_count,
+      watchers: repo.watchers_count,
+      topics: repo.topics,
       toggleStatus: false,
     }));
 
@@ -245,6 +254,7 @@ const ResultContainer = () => {
 
         {repositories.map((repos) => (
           <div className="repo-item" key={repos.id}>
+            {console.log(repos.watchers)}
             <div className="title">
               {repos.name}
               <button
@@ -256,7 +266,10 @@ const ResultContainer = () => {
                 }
                 onClick={() => toggleDetails(repos.id)}
               >
-                <img src={arrow_icon} />
+                <img
+                  src={arrow_icon}
+                  className={repos.toggleStatus ? "arrow-turn" : undefined}
+                />
               </button>
             </div>
 
@@ -273,7 +286,9 @@ const ResultContainer = () => {
                       : book.en_ca.ResultContainer.index
                           .repo_item_left_detail_panel_description}{" "}
                   </b>
-                  {lang === "pt-br"
+                  {repos.description
+                    ? repos.description
+                    : lang === "pt-br"
                     ? book.pt_br.ResultContainer.index
                         .repo_item_left_detail_panel_not_provided
                     : book.en_ca.ResultContainer.index
@@ -288,7 +303,9 @@ const ResultContainer = () => {
                       : book.en_ca.ResultContainer.index
                           .repo_item_left_detail_panel_language}{" "}
                   </b>
-                  {lang === "pt-br"
+                  {repos.language
+                    ? repos.language
+                    : lang === "pt-br"
                     ? book.pt_br.ResultContainer.index
                         .repo_item_left_detail_panel_not_provided
                     : book.en_ca.ResultContainer.index
@@ -296,20 +313,84 @@ const ResultContainer = () => {
                 </span>
                 <span>
                   <b>
-                    <img src={forks_icon} />
+                    <img src={license_icon} />
                     {lang === "pt-br"
                       ? book.pt_br.ResultContainer.index
-                          .repo_item_left_detail_panel_forks
+                          .repo_item_left_detail_panel_license
                       : book.en_ca.ResultContainer.index
-                          .repo_item_left_detail_panel_forks}{" "}
+                          .repo_item_left_detail_panel_license}{" "}
                   </b>
-                  {repos["forks_count"]}
+                  {repos.license
+                    ? repos.license
+                    : lang === "pt-br"
+                    ? book.pt_br.ResultContainer.index
+                        .repo_item_left_detail_panel_not_provided
+                    : book.en_ca.ResultContainer.index
+                        .repo_item_left_detail_panel_not_provided}
                 </span>
+                {repos.stars ? (
+                  <span>
+                    <b>
+                      <img src={stars_icon} />
+                      {lang === "pt-br"
+                        ? book.pt_br.ResultContainer.index
+                            .repo_item_left_detail_panel_stars
+                        : book.en_ca.ResultContainer.index
+                            .repo_item_left_detail_panel_stars}{" "}
+                    </b>
+                    {repos.stars}
+                  </span>
+                ) : undefined}
+                {repos.watchers ? (
+                  <span>
+                    <b>
+                      <img src={watchers_icon} />
+                      {lang === "pt-br"
+                        ? book.pt_br.ResultContainer.index
+                            .repo_item_left_detail_panel_watchers
+                        : book.en_ca.ResultContainer.index
+                            .repo_item_left_detail_panel_watchers}{" "}
+                    </b>
+                    {repos.watchers}
+                  </span>
+                ) : undefined}
+                {repos.forks ? (
+                  <span>
+                    <b>
+                      <img src={forks_icon} />
+                      {lang === "pt-br"
+                        ? book.pt_br.ResultContainer.index
+                            .repo_item_left_detail_panel_forks
+                        : book.en_ca.ResultContainer.index
+                            .repo_item_left_detail_panel_forks}{" "}
+                    </b>
+                    {repos.forks}
+                  </span>
+                ) : undefined}
+                {repos.topics.length > 0 ? (
+                  <span>
+                    <b>
+                      <img src={topics_icon} />
+                      {lang === "pt-br"
+                        ? book.pt_br.ResultContainer.index
+                            .repo_item_left_detail_panel_topics
+                        : book.en_ca.ResultContainer.index
+                            .repo_item_left_detail_panel_topics}{" "}
+                    </b>
+                    <div className="topics-row">
+                      {repos.topics.map((topic, i) => (
+                        <div className="topic" key={i}>
+                          {topic}
+                        </div>
+                      ))}
+                    </div>
+                  </span>
+                ) : undefined}
               </div>
 
               <div className="right-detail-panel">
                 <a
-                  href={repos["html_url"]}
+                  href={repos.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -329,8 +410,14 @@ const ResultContainer = () => {
 
       <div className="user-container">
         <div className="profile-pic">
-          <img src={avatarUrl} alt={`${name}`} />
+          <img className="avatar" src={avatarUrl} alt={`${name}`} />
+        </div>
+        <div className="user-details">
           <p>@{name}</p>
+          <span>
+            <img src={followers_icon} />
+            <b>{followers}</b> seguidores
+          </span>
         </div>
         <div className="profile-details">
           <a
