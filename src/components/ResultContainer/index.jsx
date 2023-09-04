@@ -79,11 +79,8 @@ const ResultContainer = () => {
   const toggleDetails = (selectedId) => {
     let novaLista = [...repositories];
 
-    const repoById = novaLista.filter((repo) => repo["id"] === selectedId);
-    const repo = repoById;
-
-    repo["toggleStatus"] = true;
-
+    const repoById = novaLista.find((repo) => repo.id === selectedId);
+    repoById.toggleStatus = !repoById.toggleStatus;
     console.log(repoById);
 
     setRepositories(novaLista);
@@ -247,9 +244,9 @@ const ResultContainer = () => {
         </div>
 
         {repositories.map((repos) => (
-          <div className="repo-item" key={repos["id"]}>
+          <div className="repo-item" key={repos.id}>
             <div className="title">
-              {repos["name"]}
+              {repos.name}
               <button
                 className="btn-arrow"
                 title={
@@ -257,16 +254,14 @@ const ResultContainer = () => {
                     ? book.pt_br.ResultContainer.index.repo_item_show_details
                     : book.en_ca.ResultContainer.index.repo_item_show_details
                 }
-                onClick={() => toggleDetails(repos["id"])}
+                onClick={() => toggleDetails(repos.id)}
               >
                 <img src={arrow_icon} />
               </button>
             </div>
 
             <div
-              className={`details ${
-                repos["toggleStatus"] ? undefined : "hidden"
-              }`}
+              className={`details ${repos.toggleStatus ? undefined : "hidden"}`}
             >
               <div className="left-detail-panel">
                 <span>
