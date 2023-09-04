@@ -17,6 +17,8 @@ O projeto ainda precisa de algumas correções e funcionalidades, a saber:
 1. Corrigir o pagination;
 3. Adicionar filtragem dos repositórios por data.
 
+**OBS**: Enquanto hospedado no Vercel, o uso de parâmetros na URL resultam em erro, mas o problema não existe localmente.
+
 ## Como testar?
 
 Há duas formas, sendo a execução local e a execução on-line via GitHub Pages.
