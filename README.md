@@ -14,9 +14,8 @@ A partir do github-repo-browser você poderá pesquisar usuários do GitHub e vi
 
 O projeto ainda precisa de algumas correções e funcionalidades, a saber:
 
-1. A API do GitHub apenas retorna 30 repositórios caso o usuário tenha mais de 30 repositórios;
-2. Listagem das páginas;
-3. Botão de expandir e recolher os projetos;
+1. Corrigir o pagination;
+3. Adicionar filtragem dos repositórios por data.
 
 ## Como testar?
 
