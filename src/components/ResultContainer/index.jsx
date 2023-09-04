@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, SetStateAction } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { LanguageContext } from "../../Contexts/LanguageContext";
 
@@ -30,7 +30,7 @@ const ResultContainer = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [pagesArray, setPagesArray] = useState<number[]>([]);
+  const [pagesArray, setPagesArray] = useState([]);
 
   let { name } = useParams();
   let navigate = useNavigate();
@@ -48,7 +48,7 @@ const ResultContainer = () => {
   useEffect(() => {
     if (currentPage === pagesTotal) return;
 
-    let array: Array<number> = [];
+    let array = [];
 
     for (let current = currentPage; current < currentPage + 5; current++) {
       array.push(current);
@@ -72,16 +72,19 @@ const ResultContainer = () => {
     navigate(path);
   };
 
-  const changeCurrentPage = (pageNumber: SetStateAction<number>) => {
+  const changeCurrentPage = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  const toggleDetails = (selectedId: number) => {
+  const toggleDetails = (selectedId) => {
     let novaLista = [...repositories];
 
     const repoById = novaLista.filter((repo) => repo["id"] === selectedId);
-    // repoById["toggleStatus"] = !repoById["toggleStatus"];
-    console.log(...repoById);
+    const repo = repoById;
+
+    repo["toggleStatus"] = true;
+
+    console.log(repoById);
 
     setRepositories(novaLista);
   };
@@ -116,31 +119,21 @@ const ResultContainer = () => {
       `https://api.github.com/users/${name}/repos?page=${currentPage}&per_page=${itemsPerPage}`
     );
 
-    const filteredData = response.data.map(
-      (repo: {
-        id: number;
-        name: string;
-        language: string;
-        html_url: string;
-        description: string;
-        forks_count: number;
-        toggleStatus: boolean;
-      }) => ({
-        id: repo.id,
-        name: repo.name,
-        language: repo.language,
-        html_url: repo.html_url,
-        description: repo.description,
-        forks_count: repo.forks_count,
-        toggleStatus: false,
-      })
-    );
+    const filteredData = response.data.map((repo) => ({
+      id: repo.id,
+      name: repo.name,
+      language: repo.language,
+      html_url: repo.html_url,
+      description: repo.description,
+      forks_count: repo.forks_count,
+      toggleStatus: false,
+    }));
 
     setLoading(false);
     setRepositories(filteredData);
   };
 
-  const handleItemsPerPage = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleItemsPerPage = (e) => {
     const value = Number(e.target.value);
     setItemsPerPage(value);
   };
@@ -205,7 +198,7 @@ const ResultContainer = () => {
                 </>
               )}
 
-              {pagesArray.map((number: number) => {
+              {pagesArray.map((number) => {
                 return (
                   <button
                     className={number === currentPage ? "active" : undefined}

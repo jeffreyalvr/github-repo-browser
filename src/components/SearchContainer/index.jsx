@@ -17,11 +17,11 @@ const SearchContainer = () => {
 
   let navigate = useNavigate();
 
-  const handleTextInput = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleTextInput = (e) => {
     setUsername(e.target.value.toLowerCase());
   };
 
-  const handleKeyDown = (e: KeyboardEventInit) => {
+  const handleKeyDown = (e) => {
     if (e.key === "Enter") handleSearch();
   };
 
@@ -60,8 +60,8 @@ const SearchContainer = () => {
                 ? book.pt_br.SearchContainer.index.textbox_area_input
                 : book.en_ca.SearchContainer.index.textbox_area_input
             }
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handleTextInput(e)}
-            onKeyDown={(e: ChangeEvent<HTMLInputElement>) => handleKeyDown(e)}
+            onChange={(e) => handleTextInput(e)}
+            onKeyDown={(e) => handleKeyDown(e)}
             defaultValue={username}
           />
         </div>

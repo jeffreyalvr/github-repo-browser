@@ -7,11 +7,7 @@ import github_logo from "../../assets/images/github-logo.png";
 import brazil_flag from "../../assets/images/icons/brazil_flag.png";
 import canada_flag from "../../assets/images/icons/canada_flag.png";
 
-type Props = {
-  size: string;
-};
-
-const Header = (props: Props) => {
+const Header = (props) => {
   const { setLang } = useContext(LanguageContext);
 
   return (
