@@ -147,6 +147,7 @@ const ResultContainer = () => {
       forks: repo.forks_count,
       watchers: repo.watchers_count,
       topics: repo.topics,
+      stars: repo.stargazers_count,
       toggleStatus: false,
     }));
 
@@ -343,7 +344,7 @@ const ResultContainer = () => {
                     : book.en_ca.ResultContainer.index
                         .repo_item_left_detail_panel_not_provided}
                 </span>
-                {repos.stars ? (
+                {repos.stars > 0 ? (
                   <span>
                     <b>
                       <img src={stars_icon} />
