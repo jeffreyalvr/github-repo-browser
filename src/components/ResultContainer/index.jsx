@@ -37,7 +37,7 @@ const ResultContainer = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [sortType, setSortType] = useState("recent");
+  const [sortType, setSortType] = useState("updated");
   const [pagesArray, setPagesArray] = useState([]);
 
   let { name } = useParams();
@@ -65,7 +65,7 @@ const ResultContainer = () => {
 
   useEffect(() => {
     loadRepos();
-  }, [itemsPerPage, currentPage]);
+  }, [sortType, itemsPerPage, currentPage]);
 
   useEffect(() => {
     if (currentPage === pagesTotal) return;
@@ -136,7 +136,7 @@ const ResultContainer = () => {
     setLoading(true);
 
     const response = await axios.get(
-      `https://api.github.com/users/${name}/repos?page=${currentPage}&per_page=${itemsPerPage}`
+      `https://api.github.com/users/${name}/repos?page=${currentPage}&sort=${sortType}&per_page=${itemsPerPage}`
     );
 
     const filteredData = response.data.map((repo) => ({
@@ -265,9 +265,9 @@ const ResultContainer = () => {
             <div className="repos-filter-item">
               <span>Ordenar por</span>
               <select value={sortType} onChange={(e) => handleSort(e)}>
-                <option value="name">Nome</option>
-                <option value="recent">Recente</option>
-                <option value="forks">Forks</option>
+                <option value="full_name">Nome</option>
+                <option value="updated">Recente</option>
+                <option value="created">Criação</option>
               </select>
             </div>
 
