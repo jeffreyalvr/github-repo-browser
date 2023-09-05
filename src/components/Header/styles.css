@@ -94,11 +94,11 @@ header {
 }
 
 @media screen and (max-width: 500px) {
-  .title {
+  .repo-item .title {
     flex-direction: column;
   }
 
-  .title .languages {
+  .repo-item .title .languages {
     justify-content: center;
     border: none;
     padding: 0;

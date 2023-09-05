@@ -118,6 +118,9 @@ h1.label-loading img {
 
 .repos-container .repo-item .title {
   vertical-align: middle;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .repos-container .repo-item .details {
