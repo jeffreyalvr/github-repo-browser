@@ -128,7 +128,27 @@ h1.label-loading img {
   vertical-align: middle;
   display: flex;
   flex-direction: row;
+  align-items: center;
   flex-wrap: wrap;
+  gap: 10px;
+}
+
+.repos-container .repo-item .title .title-details {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.repos-container .repo-item .title-details span.date {
+  font-size: 16px;
+  color: #7b7b7b;
+}
+
+.repos-container .repo-item .title-details span.date img {
+  height: 24px;
+  width: 24px;
+  border: none;
 }
 
 .repos-container .repo-item .details {

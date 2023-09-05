@@ -6,17 +6,17 @@ footer {
   align-items: center;
 }
 
-span {
+footer span {
   margin-bottom: 15px;
   font-size: 1.2rem;
   font-family: "Inter-Regular";
 }
 
-span b {
+footer span b {
   color: #30b0cc;
 }
 
-p.disclaimer {
+footer p.disclaimer {
   color: #bbbbbb;
   text-align: center;
   font-size: 15px;
@@ -26,10 +26,10 @@ p.disclaimer {
   footer {
     padding: 40px 20px !important;
   }
-  span {
+  footer span {
     font-size: 1rem;
   }
-  p.disclaimer {
+  footer p.disclaimer {
     font-size: 0.7rem;
   }
 }

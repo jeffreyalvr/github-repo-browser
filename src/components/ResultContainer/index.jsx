@@ -17,6 +17,8 @@ import stars_icon from "../../assets/images/icons/stars.png";
 import watchers_icon from "../../assets/images/icons/watchers.png";
 import license_icon from "../../assets/images/icons/license.png";
 import followers_icon from "../../assets/images/icons/followers.png";
+import updated_at_icon from "../../assets/images/icons/updated_at.png";
+import created_at_icon from "../../assets/images/icons/created_at.png";
 import switch_icon from "../../assets/images/icons/switch.png";
 import loading_icon from "../../assets/images/icons/loading.gif";
 
@@ -149,6 +151,8 @@ const ResultContainer = () => {
       watchers: repo.watchers_count,
       topics: repo.topics,
       stars: repo.stargazers_count,
+      updated_at: repo.updated_at,
+      created_at: repo.created_at,
       toggleStatus: false,
     }));
 
@@ -164,6 +168,13 @@ const ResultContainer = () => {
   const handleSort = (e) => {
     const value = String(e.target.value);
     setSortType(value);
+  };
+
+  const handleFormatDate = (date_string) => {
+    const to_date = new Date(date_string);
+    const options = { year: "numeric", month: "short", day: "2-digit" };
+
+    return to_date.toLocaleDateString(lang, options);
   };
 
   return loading ? (
@@ -304,6 +315,41 @@ const ResultContainer = () => {
                   className={repos.toggleStatus ? "arrow-turn" : undefined}
                 />
               </button>
+              <div className="title-details">
+                {sortType === "created" ? (
+                  <>
+                    <img src={created_at_icon} />
+                    <span
+                      className="date"
+                      title={
+                        lang === "pt-br"
+                          ? book.pt_br.ResultContainer.index
+                              .repo_item_created_at_title
+                          : book.en_ca.ResultContainer.index
+                              .repo_item_created_at_title
+                      }
+                    >
+                      {handleFormatDate(repos.created_at)}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <img src={updated_at_icon} />
+                    <span
+                      className="date"
+                      title={
+                        lang === "pt-br"
+                          ? book.pt_br.ResultContainer.index
+                              .repo_item_updated_at_title
+                          : book.en_ca.ResultContainer.index
+                              .repo_item_updated_at_title
+                      }
+                    >
+                      {handleFormatDate(repos.updated_at)}
+                    </span>
+                  </>
+                )}
+              </div>
             </div>
 
             <div
