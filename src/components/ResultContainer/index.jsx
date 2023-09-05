@@ -37,6 +37,7 @@ const ResultContainer = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [sortType, setSortType] = useState("recent");
   const [pagesArray, setPagesArray] = useState([]);
 
   let { name } = useParams();
@@ -160,6 +161,11 @@ const ResultContainer = () => {
     setItemsPerPage(value);
   };
 
+  const handleSort = (e) => {
+    const value = String(e.target.value);
+    setSortType(value);
+  };
+
   return loading ? (
     <h1 className="label-loading">
       <img src={loading_icon} />
@@ -255,16 +261,27 @@ const ResultContainer = () => {
             <div className="mb50"></div>
           )}
 
-          <div className="repos-per-page">
-            <span>Itens por página</span>
-            <select
-              value={itemsPerPage}
-              onChange={(e) => handleItemsPerPage(e)}
-            >
-              <option value={5}>5</option>
-              <option value={10}>10</option>
-              <option value={25}>25</option>
-            </select>
+          <div className="repos-filters">
+            <div className="repos-filter-item">
+              <span>Ordenar por</span>
+              <select value={sortType} onChange={(e) => handleSort(e)}>
+                <option value="name">Nome</option>
+                <option value="recent">Recente</option>
+                <option value="forks">Forks</option>
+              </select>
+            </div>
+
+            <div className="repos-filter-item">
+              <span>Itens por página</span>
+              <select
+                value={itemsPerPage}
+                onChange={(e) => handleItemsPerPage(e)}
+              >
+                <option value={5}>5</option>
+                <option value={10}>10</option>
+                <option value={25}>25</option>
+              </select>
+            </div>
           </div>
         </div>
 
