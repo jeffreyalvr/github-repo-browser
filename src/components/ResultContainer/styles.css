@@ -124,7 +124,14 @@ h1.label-loading img {
   padding: 20px;
 }
 
-.repos-container .repo-item .title {
+.repos-container .repo-item .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.repos-container .repo-item .header .title {
   vertical-align: middle;
   display: flex;
   flex-direction: row;
@@ -133,19 +140,19 @@ h1.label-loading img {
   gap: 10px;
 }
 
-.repos-container .repo-item .title .title-details {
+.repos-container .repo-item .header .title-details {
   display: flex;
   flex-direction: row;
   gap: 10px;
   align-items: center;
 }
 
-.repos-container .repo-item .title-details span.date {
+.repos-container .repo-item .header .title-details span.date {
   font-size: 16px;
   color: #7b7b7b;
 }
 
-.repos-container .repo-item .title-details span.date img {
+.repos-container .repo-item .header .title-details span.date img {
   height: 24px;
   width: 24px;
   border: none;
@@ -342,6 +349,13 @@ h1.label-loading img {
   }
 }
 
+@media screen and (max-width: 800px) {
+  .repos-container .repo-item .header {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .repos-container .repos-header h1 {
     font-size: 1.6rem;
@@ -354,7 +368,7 @@ h1.label-loading img {
     align-items: center;
     gap: 10px;
   }
-  .repos-container .repo-item .title {
+  .repos-container .repo-item .header .title {
     font-size: 1.2rem;
   }
   .repos-container .repo-item .details .left-detail-panel span {

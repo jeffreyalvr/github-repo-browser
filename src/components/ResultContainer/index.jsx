@@ -299,22 +299,24 @@ const ResultContainer = () => {
         {repositories.map((repos) => (
           <div className="repo-item" key={repos.id}>
             {console.log(repos.watchers)}
-            <div className="title">
-              {repos.name}
-              <button
-                className="btn-arrow"
-                title={
-                  lang === "pt-br"
-                    ? book.pt_br.ResultContainer.index.repo_item_show_details
-                    : book.en_ca.ResultContainer.index.repo_item_show_details
-                }
-                onClick={() => toggleDetails(repos.id)}
-              >
-                <img
-                  src={arrow_icon}
-                  className={repos.toggleStatus ? "arrow-turn" : undefined}
-                />
-              </button>
+            <div className="header">
+              <div className="title">
+                {repos.name}
+                <button
+                  className="btn-arrow"
+                  title={
+                    lang === "pt-br"
+                      ? book.pt_br.ResultContainer.index.repo_item_show_details
+                      : book.en_ca.ResultContainer.index.repo_item_show_details
+                  }
+                  onClick={() => toggleDetails(repos.id)}
+                >
+                  <img
+                    src={arrow_icon}
+                    className={repos.toggleStatus ? "arrow-turn" : undefined}
+                  />
+                </button>
+              </div>
               <div className="title-details">
                 {sortType === "created" ? (
                   <>
