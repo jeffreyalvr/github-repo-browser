@@ -33,7 +33,6 @@ const ResultContainer = () => {
   const [followers, setFollowers] = useState(0);
   const [followersFixed, setFollowersFixed] = useState(0);
   const [error, setError] = useState({});
-  const [usernameExists, setUsernameExists] = useState(false);
   const [publicRepos, setPublicRepos] = useState(0);
   const [pagesTotal, setPagesTotal] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
@@ -105,7 +104,6 @@ const ResultContainer = () => {
 
     const repoById = novaLista.find((repo) => repo.id === selectedId);
     repoById.toggleStatus = !repoById.toggleStatus;
-    console.log(repoById);
 
     setRepositories(novaLista);
   };
@@ -114,14 +112,12 @@ const ResultContainer = () => {
     axios
       .get(`https://api.github.com/users/${name}`)
       .then((response) => {
-        setUsernameExists(true);
         setAvatarUrl(response.data.avatar_url);
         setFollowers(response.data.followers);
         setPublicRepos(response.data.public_repos);
         loadRepos();
       })
       .catch((err) => {
-        setUsernameExists(false);
         setPublicRepos(0);
         setError(err);
         userNotFound();
@@ -153,7 +149,7 @@ const ResultContainer = () => {
       stars: repo.stargazers_count,
       updated_at: repo.updated_at,
       created_at: repo.created_at,
-      license: repo.license.name,
+      license: repo.license?.name,
       description: repo.description,
       toggleStatus: false,
     }));
@@ -393,23 +389,19 @@ const ResultContainer = () => {
                     : book.en_ca.ResultContainer.index
                         .repo_item_left_detail_panel_not_provided}
                 </span>
-                <span>
-                  <b>
-                    <img src={license_icon} />
-                    {lang === "pt-br"
-                      ? book.pt_br.ResultContainer.index
-                          .repo_item_left_detail_panel_license
-                      : book.en_ca.ResultContainer.index
-                          .repo_item_left_detail_panel_license}{" "}
-                  </b>
-                  {repos.license
-                    ? repos.license
-                    : lang === "pt-br"
-                    ? book.pt_br.ResultContainer.index
-                        .repo_item_left_detail_panel_not_provided
-                    : book.en_ca.ResultContainer.index
-                        .repo_item_left_detail_panel_not_provided}
-                </span>
+                {repos.license ? (
+                  <span>
+                    <b>
+                      <img src={license_icon} />
+                      {lang === "pt-br"
+                        ? book.pt_br.ResultContainer.index
+                            .repo_item_left_detail_panel_license
+                        : book.en_ca.ResultContainer.index
+                            .repo_item_left_detail_panel_license}{" "}
+                    </b>
+                    {repos.license}
+                  </span>
+                ) : undefined}
                 {repos.stars > 0 ? (
                   <span>
                     <b>
