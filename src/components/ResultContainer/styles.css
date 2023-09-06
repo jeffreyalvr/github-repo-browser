@@ -165,6 +165,7 @@ h1.label-loading img {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  gap: 30px;
 }
 
 .repos-container .repo-item .details .hidden {
@@ -174,6 +175,12 @@ h1.label-loading img {
 .repos-container .repo-item .details .left-detail-panel {
   height: auto;
   width: 100%;
+}
+
+.repos-container .repo-item .details .left-detail-panel span.description-item {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #d2d2d2;
+  margin-bottom: 20px;
 }
 
 .left-detail-panel span .topic {

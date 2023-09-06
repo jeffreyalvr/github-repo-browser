@@ -153,6 +153,8 @@ const ResultContainer = () => {
       stars: repo.stargazers_count,
       updated_at: repo.updated_at,
       created_at: repo.created_at,
+      license: repo.license.name,
+      description: repo.description,
       toggleStatus: false,
     }));
 
@@ -298,7 +300,6 @@ const ResultContainer = () => {
 
         {repositories.map((repos) => (
           <div className="repo-item" key={repos.id}>
-            {console.log(repos.watchers)}
             <div className="header">
               <div className="title">
                 {repos.name}
@@ -358,7 +359,7 @@ const ResultContainer = () => {
               className={`details ${repos.toggleStatus ? undefined : "hidden"}`}
             >
               <div className="left-detail-panel">
-                <span>
+                <span className="description-item">
                   <b>
                     <img src={description_icon} />
                     {lang === "pt-br"
