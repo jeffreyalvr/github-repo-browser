@@ -317,9 +317,13 @@ h1.label-loading img {
   .repos-container .repo-item .details .right-detail-panel button {
     margin: 10px 0 0 0 !important;
   }
+  .repos-container .repos-nav-container .repos-pagination button {
+    min-height: 35px;
+  }
   .user-container {
     max-width: 350px;
   }
+  padding: 0 20px;
 }
 
 @media screen and (max-width: 1250px) {
