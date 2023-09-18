@@ -29,8 +29,17 @@
         "repo_item_user_container_btn_primary": "Open profile in GitHub",
         "repo_item_user_container_btn_look_for_somebody_else": "Look for someone else",
         "repo_item_user_container_followers": "followers",
+        "repo_pagination_button_first_page": "first",
+        "repo_pagination_button_previous_page": "previous",
+        "repo_pagination_button_next_page": "next",
+        "repo_filters_sort_by_text": "Order by",
+        "repo_filters_sort_by_name": "Name",
+        "repo_filters_sort_by_updated_date": "Recent",
+        "repo_filters_sort_by_created_date": "Created date",
+        "repo_filters_per_page_text": "Items per page",
         "repo_item_created_at_title": "Created at",
-        "repo_item_updated_at_title": "Last updated at"
+        "repo_item_updated_at_title": "Last updated at",
+        "user_container_followers": "followers"
       }
     },
     "NotFoundContainer": {
@@ -78,8 +87,17 @@
         "repo_item_user_container_btn_primary": "Abrir perfil no GitHub",
         "repo_item_user_container_btn_look_for_somebody_else": "Procurar outro usuário",
         "repo_item_user_container_followers": "seguidores",
+        "repo_pagination_button_first_page": "início",
+        "repo_pagination_button_previous_page": "anterior",
+        "repo_pagination_button_next_page": "próxima",
+        "repo_filters_sort_by_text": "Ordenar por",
+        "repo_filters_sort_by_name": "Nome",
+        "repo_filters_sort_by_update_date": "Recente",
+        "repo_filters_sort_by_create_date": "Criação",
+        "repo_filters_per_page_text": "Itens por página",
         "repo_item_updated_at_title": "Última atualização",
-        "repo_item_created_at_title": "Criado em"
+        "repo_item_created_at_title": "Criado em",
+        "user_container_followers": "seguidores"
       }
     },
     "NotFoundContainer": {

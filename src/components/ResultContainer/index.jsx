@@ -224,13 +224,28 @@ const ResultContainer = () => {
             <div className="repos-pagination">
               {currentPage > 5 && (
                 <>
-                  <button onClick={() => changeCurrentPage(1)}>Início</button>
+                  <button onClick={() => changeCurrentPage(1)}>
+                    {lang === "pt-br"
+                      ? book.pt_br.ResultContainer.index
+                          .repo_pagination_button_first_page
+                      : book.en_ca.ResultContainer.index
+                          .repo_pagination_button_first_page}
+                  </button>
 
                   <button
                     className="arrow-btn"
                     onClick={() => handlePreviousPage()}
                   >
-                    <img src={previous_page_icon} alt="Anterior" />
+                    <img
+                      src={previous_page_icon}
+                      alt={
+                        lang === "pt-br"
+                          ? book.pt_br.ResultContainer.index
+                              .repo_pagination_button_previous_page
+                          : book.en_ca.ResultContainer.index
+                              .repo_pagination_button_previous_page
+                      }
+                    />
                   </button>
                 </>
               )}
@@ -249,7 +264,16 @@ const ResultContainer = () => {
 
               {currentPage < pagesTotal && (
                 <button className="arrow-btn" onClick={() => handleNextPage()}>
-                  <img src={next_page_icon} alt="Próxima" />
+                  <img
+                    src={next_page_icon}
+                    alt={
+                      lang === "pt-br"
+                        ? book.pt_br.ResultContainer.index
+                            .repo_pagination_button_next_page
+                        : book.en_ca.ResultContainer.index
+                            .repo_pagination_button_next_page
+                    }
+                  />
                 </button>
               )}
 
@@ -272,16 +296,41 @@ const ResultContainer = () => {
 
           <div className="repos-filters">
             <div className="repos-filter-item">
-              <span>Ordenar por</span>
+              <span>
+                {lang === "pt-br"
+                  ? book.pt_br.ResultContainer.index.repo_filters_sort_by_text
+                  : book.en_ca.ResultContainer.index.repo_filters_sort_by_text}
+              </span>
               <select value={sortType} onChange={(e) => handleSort(e)}>
-                <option value="full_name">Nome</option>
-                <option value="updated">Recente</option>
-                <option value="created">Criação</option>
+                <option value="full_name">
+                  {lang === "pt-br"
+                    ? book.pt_br.ResultContainer.index.repo_filters_sort_by_name
+                    : book.en_ca.ResultContainer.index
+                        .repo_filters_sort_by_name}
+                </option>
+                <option value="updated">
+                  {lang === "pt-br"
+                    ? book.pt_br.ResultContainer.index
+                        .repo_filters_sort_by_updated_date
+                    : book.en_ca.ResultContainer.index
+                        .repo_filters_sort_by_updated_date}
+                </option>
+                <option value="created">
+                  {lang === "pt-br"
+                    ? book.pt_br.ResultContainer.index
+                        .repo_filters_sort_by_created_date
+                    : book.en_ca.ResultContainer.index
+                        .repo_filters_sort_by_created_date}
+                </option>
               </select>
             </div>
 
             <div className="repos-filter-item">
-              <span>Itens por página</span>
+              <span>
+                {lang === "pt-br"
+                  ? book.pt_br.ResultContainer.index.repo_filters_per_page_text
+                  : book.en_ca.ResultContainer.index.repo_filters_per_page_text}
+              </span>
               <select
                 value={itemsPerPage}
                 onChange={(e) => handleItemsPerPage(e)}
@@ -490,7 +539,10 @@ const ResultContainer = () => {
           <p>@{name}</p>
           <span>
             <img src={followers_icon} />
-            <b>{followersFixed}</b> seguidores
+            <b>{followersFixed}</b>{" "}
+            {lang === "pt-br"
+              ? book.pt_br.ResultContainer.index.user_container_followers
+              : book.en_ca.ResultContainer.index.user_container_followers}
           </span>
         </div>
         <div className="profile-details">
