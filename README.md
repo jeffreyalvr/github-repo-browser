@@ -9,6 +9,7 @@ A partir do github-repo-browser você poderá pesquisar usuários do GitHub e vi
 1. React JS;
 2. Axios;
 3. API GitHub;
+4. LocalStorage.
 
 ## Ainda resta fazer algo?
 
