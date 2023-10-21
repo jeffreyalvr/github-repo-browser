@@ -16,7 +16,7 @@ A partir do github-repo-browser você poderá pesquisar usuários do GitHub e vi
 O projeto ainda precisa de algumas correções e funcionalidades, a saber:
 
 1. Corrigir o pagination;
-3. Adicionar filtragem dos repositórios por data.
+2. Adicionar filtragem dos repositórios por data.
 
 ## Como testar?
 
@@ -26,6 +26,20 @@ Há duas formas, sendo a execução local e a execução on-line via GitHub Page
 Apenas acesse a seguinte URL: https://github-repo-browser.vercel.app/
 
 **2. Execução local:**\
- a. Realize o download/clone do projeto;\
- b. Dentro da pasta do mesmo, com o terminal, digite `yarn install` (será necessário ter o `yarn` instalado);\
- c. Após baixadas todas as dependências, novamente no terminal, digite `yarn run dev`;
+
+1. Baixe o projeto pelo GitHub ou realize um clone do mesmo (Necessário possuir o `Node` e `npm` instalados em sua máquina de forma global).
+2. Navegue até a pasta raiz do projeto e abra-a utilizando um terminal ou prompt de comando de sua escolha.
+
+Agora utilize os seguintes comandos para suas operações:
+
+1. Instalação dos pacotes utilizados pela aplicação:
+
+`npm install`
+
+2. Iniciação do servidor:
+
+`npm run start`
+
+3. Por fim, acesse a aplicação global por meio da seguinte URL:
+
+`localhost:5173`
