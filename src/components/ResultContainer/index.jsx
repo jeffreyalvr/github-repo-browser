@@ -66,7 +66,10 @@ const ResultContainer = () => {
 
   useEffect(() => {
     loadRepos();
-  }, [sortType, currentPage]);
+    let pagesSliced = Math.ceil(publicRepos / itemsPerPage);
+    setPagesTotal(pagesSliced);
+    handlePaginationArray(pagesSliced);
+  }, [sortType, currentPage, publicRepos, itemsPerPage]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -109,7 +112,11 @@ const ResultContainer = () => {
       (_, index) => index + 1
     ).slice(startIndex - 1, endIndex);
 
-    setPagesArray(arr);
+    if (!arrayIgual(arr, pagesArray)) setPagesArray(arr);
+  };
+
+  const arrayIgual = (a, b) => {
+    return JSON.stringify(a) === JSON.stringify(b);
   };
 
   const checkUsername = async () => {
@@ -158,10 +165,6 @@ const ResultContainer = () => {
 
     setLoading(false);
     setRepositories(filteredData);
-
-    let pagesSliced = Math.ceil(publicRepos / itemsPerPage);
-    setPagesTotal(pagesSliced);
-    handlePaginationArray(pagesSliced);
   };
 
   const handleItemsPerPage = (e) => {
