@@ -34,7 +34,7 @@ const ResultContainer = () => {
   const [followersFixed, setFollowersFixed] = useState(0);
   const [error, setError] = useState({});
   const [publicRepos, setPublicRepos] = useState(0);
-  const [pagesTotal, setPagesTotal] = useState(8);
+  const [pagesTotal, setPagesTotal] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -66,21 +66,11 @@ const ResultContainer = () => {
 
   useEffect(() => {
     loadRepos();
-  }, [sortType, itemsPerPage, currentPage]);
+  }, [sortType, currentPage]);
 
   useEffect(() => {
-    if (currentPage === pagesTotal) return;
-
-    let array = [];
-
-    for (let current = currentPage; current < currentPage + 5; current++) {
-      array.push(current);
-    }
-
-    array = array.filter((n) => n < pagesTotal);
-
-    setPagesArray(array);
-  }, [currentPage]);
+    setCurrentPage(1);
+  }, [itemsPerPage]);
 
   const handlePreviousPage = () => {
     changeCurrentPage(currentPage - 1);
@@ -108,20 +98,32 @@ const ResultContainer = () => {
     setRepositories(novaLista);
   };
 
-  const checkUsername = () => {
-    axios
-      .get(`https://api.github.com/users/${name}`)
-      .then((response) => {
-        setAvatarUrl(response.data.avatar_url);
-        setFollowers(response.data.followers);
-        setPublicRepos(response.data.public_repos);
-        loadRepos();
-      })
-      .catch((err) => {
-        setPublicRepos(0);
-        setError(err);
-        userNotFound();
-      });
+  const handlePaginationArray = (totalPaginasSliced) => {
+    let startIndex = currentPage;
+    let endIndex = startIndex + 4;
+
+    if (currentPage === totalPaginasSliced) endIndex = currentPage;
+
+    let arr = Array.from(
+      { length: totalPaginasSliced },
+      (_, index) => index + 1
+    ).slice(startIndex - 1, endIndex);
+
+    setPagesArray(arr);
+  };
+
+  const checkUsername = async () => {
+    try {
+      const response = await axios.get(`https://api.github.com/users/${name}`);
+      setAvatarUrl(response.data.avatar_url);
+      setFollowers(response.data.followers);
+      setPublicRepos(response.data.public_repos);
+      await loadRepos();
+    } catch (err) {
+      setPublicRepos(0);
+      setError(err);
+      userNotFound();
+    }
   };
 
   const userNotFound = () => {
@@ -156,6 +158,10 @@ const ResultContainer = () => {
 
     setLoading(false);
     setRepositories(filteredData);
+
+    let pagesSliced = Math.ceil(publicRepos / itemsPerPage);
+    setPagesTotal(pagesSliced);
+    handlePaginationArray(pagesSliced);
   };
 
   const handleItemsPerPage = (e) => {
@@ -173,6 +179,10 @@ const ResultContainer = () => {
     const options = { year: "numeric", month: "short", day: "2-digit" };
 
     return to_date.toLocaleDateString(lang, options);
+  };
+
+  const existePaginasEntrePAPT = (pagesArray, pagesTotal) => {
+    return Math.abs(pagesArray[pagesArray.length - 1] - pagesTotal) > 1;
   };
 
   return loading ? (
@@ -222,32 +232,33 @@ const ResultContainer = () => {
         <div className="repos-nav-container">
           {pagesTotal > 1 ? (
             <div className="repos-pagination">
-              {currentPage > 5 && (
-                <>
-                  <button onClick={() => changeCurrentPage(1)}>
-                    {lang === "pt-br"
-                      ? book.pt_br.ResultContainer.index
-                          .repo_pagination_button_first_page
-                      : book.en_ca.ResultContainer.index
-                          .repo_pagination_button_first_page}
-                  </button>
+              {/* exibe a primeira página caso esteja na página 2 em diante */}
+              {currentPage > 2 && (
+                <button onClick={() => changeCurrentPage(1)}>
+                  {lang === "pt-br"
+                    ? book.pt_br.ResultContainer.index
+                        .repo_pagination_button_first_page
+                    : book.en_ca.ResultContainer.index
+                        .repo_pagination_button_first_page}
+                </button>
+              )}
 
-                  <button
-                    className="arrow-btn"
-                    onClick={() => handlePreviousPage()}
-                  >
-                    <img
-                      src={previous_page_icon}
-                      alt={
-                        lang === "pt-br"
-                          ? book.pt_br.ResultContainer.index
-                              .repo_pagination_button_previous_page
-                          : book.en_ca.ResultContainer.index
-                              .repo_pagination_button_previous_page
-                      }
-                    />
-                  </button>
-                </>
+              {currentPage >= 2 && (
+                <button
+                  className="arrow-btn"
+                  onClick={() => handlePreviousPage()}
+                >
+                  <img
+                    src={previous_page_icon}
+                    alt={
+                      lang === "pt-br"
+                        ? book.pt_br.ResultContainer.index
+                            .repo_pagination_button_previous_page
+                        : book.en_ca.ResultContainer.index
+                            .repo_pagination_button_previous_page
+                    }
+                  />
+                </button>
               )}
 
               {pagesArray.map((number) => {
@@ -262,7 +273,8 @@ const ResultContainer = () => {
                 );
               })}
 
-              {currentPage < pagesTotal && (
+              {!pagesArray.includes(pagesTotal) &&
+              existePaginasEntrePAPT(pagesArray, pagesTotal) ? (
                 <button className="arrow-btn" onClick={() => handleNextPage()}>
                   <img
                     src={next_page_icon}
@@ -275,20 +287,21 @@ const ResultContainer = () => {
                     }
                   />
                 </button>
-              )}
+              ) : undefined}
 
-              {/* exibe que existem mais itens entre o 5 item da lista de páginas e a última página */}
-              {pagesArray[pagesArray.length - 1] < pagesTotal - 1 && (
+              {existePaginasEntrePAPT(pagesArray, pagesTotal) && (
                 <span>&bull;&bull;&bull;</span>
               )}
 
               {/* botão da última página da lista */}
-              <button
-                className={currentPage === pagesTotal ? "active" : undefined}
-                onClick={() => changeCurrentPage(pagesTotal)}
-              >
-                {pagesTotal}
-              </button>
+              {!pagesArray.includes(pagesTotal) && (
+                <button
+                  className={currentPage === pagesTotal ? "active" : undefined}
+                  onClick={() => changeCurrentPage(pagesTotal)}
+                >
+                  {pagesTotal}
+                </button>
+              )}
             </div>
           ) : (
             <div className="mb50"></div>
@@ -311,16 +324,16 @@ const ResultContainer = () => {
                 <option value="updated">
                   {lang === "pt-br"
                     ? book.pt_br.ResultContainer.index
-                        .repo_filters_sort_by_updated_date
+                        .repo_filters_sort_by_update_date
                     : book.en_ca.ResultContainer.index
-                        .repo_filters_sort_by_updated_date}
+                        .repo_filters_sort_by_update_date}
                 </option>
                 <option value="created">
                   {lang === "pt-br"
                     ? book.pt_br.ResultContainer.index
-                        .repo_filters_sort_by_created_date
+                        .repo_filters_sort_by_create_date
                     : book.en_ca.ResultContainer.index
-                        .repo_filters_sort_by_created_date}
+                        .repo_filters_sort_by_create_date}
                 </option>
               </select>
             </div>
