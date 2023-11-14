@@ -75,12 +75,15 @@ const ResultContainer = () => {
     setCurrentPage(1);
   }, [itemsPerPage]);
 
-  const handlePreviousPage = () => {
-    changeCurrentPage(currentPage - 1);
+  const handlePreviousPageArray = (lastPageIndex) => {
+    let pageIndex = lastPageIndex - 4 < 1 ? 1 : lastPageIndex - 4;
+    changeCurrentPage(pageIndex);
   };
 
-  const handleNextPage = () => {
-    changeCurrentPage(currentPage + 1);
+  const handleNextPageArray = (lastPageIndex) => {
+    let pageIndex =
+      lastPageIndex + 4 >= pagesTotal ? pagesTotal : lastPageIndex + 4;
+    changeCurrentPage(pageIndex);
   };
 
   const routeChange = () => {
@@ -249,7 +252,7 @@ const ResultContainer = () => {
               {currentPage >= 2 && (
                 <button
                   className="arrow-btn"
-                  onClick={() => handlePreviousPage()}
+                  onClick={() => handlePreviousPageArray(currentPage)}
                 >
                   <img
                     src={previous_page_icon}
@@ -278,7 +281,10 @@ const ResultContainer = () => {
 
               {!pagesArray.includes(pagesTotal) &&
               existePaginasEntrePAPT(pagesArray, pagesTotal) ? (
-                <button className="arrow-btn" onClick={() => handleNextPage()}>
+                <button
+                  className="arrow-btn"
+                  onClick={() => handleNextPageArray(currentPage)}
+                >
                   <img
                     src={next_page_icon}
                     alt={
